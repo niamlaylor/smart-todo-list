@@ -1,0 +1,27 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nav-title {
+  font-family: "Bree Serif", serif;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.nav-title a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-btn {
+  justify-content: space-between;
+}
