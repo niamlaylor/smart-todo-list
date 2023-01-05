@@ -9,6 +9,10 @@
   font-size: 1.7rem !important;
 }
 
+.card-header-grey {
+  background-color: #b4b4b4 !important;
+}
+
 /*!
  * Bootstrap  v5.3.0-alpha1 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
