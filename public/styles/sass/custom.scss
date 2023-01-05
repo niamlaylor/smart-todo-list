@@ -1,3 +1,5 @@
+@import "../../../node_modules/bootstrap/scss/functions";
+
 .nav-logo-word-1 {
   font-family: "Bebas Neue", cursive !important;
   font-size: 2rem !important;
@@ -8,11 +10,12 @@
   font-size: 1.7rem !important;
 }
 
-.card-header-grey {
-  background-color: #b4b4b4 !important;
-}
+@import "../../../node_modules/bootstrap/scss/_variables.scss";
+@import "../../../node_modules/bootstrap/scss/mixins";
 
-@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+.card-header-grey {
+  background-color: $gray-500 !important;
+}
 
 body,
 nav {
