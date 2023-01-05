@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: rgb(163, 208, 219);
+  background: linear-gradient(227deg, rgb(163, 208, 219) 0%, rgb(163, 176, 219) 20%, rgb(163, 173, 219) 34%, rgb(163, 219, 208) 59%, rgb(163, 208, 219) 74%, rgb(163, 208, 219) 100%);
+}/*# sourceMappingURL=main.css.map */
