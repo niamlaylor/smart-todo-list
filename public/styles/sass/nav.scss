@@ -3,19 +3,36 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   background-color: #a3b0da;
+
+  a:hover,
+  a:visited,
+  a:link,
+  a:active {
+    text-decoration: none;
+  }
 }
 
 .nav-title {
   font-family: "Bree Serif", serif;
   color: rgb(0, 0, 0);
   text-decoration: none;
+  display: inline-block;
+  position: relative;
+  height: 60px;
 }
 
-.nav-title a:hover,
-a:visited,
-a:link,
-a:active {
-  text-decoration: none;
+.word-2 {
+  font-family: "Sacramento", cursive;
+  font-size: 30px;
+  position: absolute;
+  left: 36px;
+  top: -10px;
+  color: rgb(255, 208, 0);
+}
+
+.word-1 {
+  position: absolute;
+  top: -10px;
 }
 
 .nav-right {
