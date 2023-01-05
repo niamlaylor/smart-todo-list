@@ -1,3 +1,5 @@
+@import "../../../node_modules/bootstrap/scss/functions";
+
 .nav-logo-word-1 {
   font-family: "Bebas Neue", cursive !important;
   font-size: 2rem !important;
@@ -12,7 +14,8 @@
   background-color: #b4b4b4 !important;
 }
 
-@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
 
 body,
 nav {
