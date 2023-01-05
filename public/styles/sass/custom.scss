@@ -1,1 +1,21 @@
-@import "../node_modules/bootstrap/scss/bootstrap";
+.nav-logo-word-1 {
+  font-family: "Bebas Neue", cursive !important;
+  font-size: 2rem !important;
+}
+
+.nav-logo-word-2 {
+  font-family: "Satisfy", cursive !important;
+  font-size: 1.7rem !important;
+}
+
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+body,
+nav {
+  background-color: $purple-300;
+  background-image: var(--bs-gradient);
+}
+
+body {
+  height: 100vh;
+}
