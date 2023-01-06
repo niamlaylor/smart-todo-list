@@ -3,9 +3,9 @@
   <a class="navbar-brand ml-2 nav-logo-word-1 text-light" href="#"
     >List<span class="nav-logo-word-2">Easy</span></a
   >
-  <% if (!username) { %>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
+      <% if (!username) { %>
       <li class="nav-item">
         <a
           role="button"
@@ -21,13 +21,16 @@
           class="nav-link nav-item"
           data-toggle="modal"
           data-target="#registerModal"
-          >Register</a>
+          >Register</a
+        >
       </li>
       <% } else { %>
       <!-- Hidden user icon, change once user is logged in -->
       <li class="nav-item">
         <form class="form-inline my-2 my-lg-0" method="POST" action="/logout">
-          <button class="btn btn-dark my-2 my-sm-0" type="submit">Sign out</button>
+          <button class="btn btn-dark my-2 my-sm-0" type="submit">
+            Sign out
+          </button>
         </form>
         <% } %>
       </li>
