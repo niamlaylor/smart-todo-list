@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
     <link rel="stylesheet" href="/vendor/border-box.css" />
 
+    <%- include('partials/_header') %>
+
     <!-- Link scripts -->
     <script src="/vendor/jquery-3.0.0.js"></script>
     <script defer src="/scripts/app.js"></script>
@@ -39,7 +41,6 @@
   </head>
 
   <!-- Main HTML -->
-  <%- include('partials/_header') %>
     <!-- Login Modal -->
     <div
       class="modal fade"
@@ -63,28 +64,32 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form method="POST" action="/login">
               <div class="form-group">
-                <label for="email">User ID</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  id="user-id"
-                  placeholder="Enter user id"
-                />
+                <label for="exampleInputEmail1">Email</label>
+                <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  data-dismiss="modal"
+                >Login</button>
               </div>
             </form>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="submit" class="btn btn-primary">Login</button>
-          </div>
+
         </div>
       </div>
     </div>
