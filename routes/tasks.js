@@ -1,5 +1,5 @@
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const router = express.Router();
 
 router.post('/', (req, res) => {
   console.log('Post request worked for tasks!');

@@ -1,0 +1,31 @@
+.nav-logo-word-1 {
+  font-family: "Bebas Neue", cursive !important;
+  font-size: 2rem !important;
+}
+
+.nav-logo-word-2 {
+  font-family: "Satisfy", cursive !important;
+  font-size: 1.7rem !important;
+}
+
+.grey-custom {
+  background-color: #ced4da !important;
+}
+
+.nav-link {
+  color: white;
+}
+
+.nav-link:hover {
+  color: grey;
+}
+
+body,
+nav {
+  background-color: #a98eda !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+body {
+  height: 100vh;
+}

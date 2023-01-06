@@ -1,0 +1,13 @@
+{
+  "editor.accessibilityPageSize": 10,
+  "debug.console.acceptSuggestionOnEnter": "off",
+  "debug.console.fontSize": 14,
+
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/public/styles/css"
+    }
+  ]
+}

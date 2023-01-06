@@ -1,0 +1,36 @@
+@import "../../../node_modules/bootstrap/scss/functions";
+
+.nav-logo-word-1 {
+  font-family: "Bebas Neue", cursive !important;
+  font-size: 2rem !important;
+}
+
+.nav-logo-word-2 {
+  font-family: "Satisfy", cursive !important;
+  font-size: 1.7rem !important;
+}
+
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
+
+.grey-custom {
+  background-color: $gray-400 !important;
+}
+
+.nav-link {
+  color: white;
+}
+
+.nav-link:hover {
+  color: grey;
+}
+
+body,
+nav {
+  background-color: $purple-300 !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+body {
+  height: 100vh;
+}
