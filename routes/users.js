@@ -15,13 +15,16 @@ router.use(cookieSession({
   keys: ['key1', 'key2']
 }));
 
-router.post('/:user_id', (req, res) => {
-  req.cookies.user_id = req.params.user_id;
-  res.redirect('/');
+router.post('/users', (req, res) => {
+//This route is for creating a new user
 });
 
-router.get('/', (req, res) => {
+router.get('/:user_id', (req, res) => {
   res.render('users');
+});
+
+router.patch('/', (req, res) => {
+//This route is for updating account information
 });
 
 module.exports = router;
