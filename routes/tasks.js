@@ -11,7 +11,9 @@ router.get('/', (req, res) => {
   console.log('Get request worked for tasks!');
 });
 
-router.patch
+router.patch('/', (req, res) => {
+  // This is for updating a task
+})
 
 // For this route we delete the value of req.params
 router.delete('/:task_id', (req, res) => {
