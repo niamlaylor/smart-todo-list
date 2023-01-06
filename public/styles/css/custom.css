@@ -12,6 +12,14 @@
   background-color: #ced4da !important;
 }
 
+.nav-link {
+  color: white;
+}
+
+.nav-link:hover {
+  color: grey;
+}
+
 body,
 nav {
   background-color: #a98eda !important;
