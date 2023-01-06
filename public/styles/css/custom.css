@@ -8,16 +8,24 @@
   font-size: 1.7rem !important;
 }
 
-.card-header-grey {
-  background-color: #adb5bd !important;
+.grey-custom {
+  background-color: #ced4da !important;
+}
+
+.nav-link {
+  color: white;
+}
+
+.nav-link:hover {
+  color: grey;
 }
 
 body,
 nav {
-  background-color: #a98eda;
-  background-image: var(--bs-gradient);
+  background-color: #a98eda !important;
+  background-image: var(--bs-gradient) !important;
 }
 
 body {
   height: 100vh;
-}/*# sourceMappingURL=custom.css.map */
+}
