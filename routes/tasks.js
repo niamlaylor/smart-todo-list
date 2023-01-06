@@ -7,8 +7,8 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  res.render('tasks');
   const templateVars = { username: req.session.username };
+  res.render('tasks', templateVars);
 });
 
 router.patch('/', (req, res) => {

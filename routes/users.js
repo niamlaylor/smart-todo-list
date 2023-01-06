@@ -14,7 +14,6 @@ router.post('/users', (req, res) => {
 
 router.get('/:user_id', (req, res) => {
   res.render('users');
-  const templateVars = { user_id: req.params.user_id };
 });
 
 router.patch('/', (req, res) => {
