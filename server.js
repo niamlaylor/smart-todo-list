@@ -60,7 +60,7 @@ app.use("/logout", logoutRoutes);
 
 app.get("/", (req, res) => {
   const templateVars = { username: req.session.username };
-  res.render("index");
+  res.render("index", templateVars);
 });
 
 app.listen(PORT, () => {
