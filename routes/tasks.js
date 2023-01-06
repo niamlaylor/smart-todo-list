@@ -7,8 +7,8 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  res.render('tasks'); // What we render depends on the frontend (what EJS templates do we have etc.)
-  console.log('Get request worked for tasks!');
+  res.render('tasks');
+  const templateVars = { username: req.session.username };
 });
 
 router.patch('/', (req, res) => {
