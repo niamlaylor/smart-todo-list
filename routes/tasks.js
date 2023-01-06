@@ -10,4 +10,7 @@ router.post('/:task_id', (req, res) => {
   res.redirect('/');
 });
 
+router.delete('/:task_id', (req, res) => {
+});
+
 module.exports = router;
