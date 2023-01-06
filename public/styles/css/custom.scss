@@ -17,6 +17,14 @@
   background-color: $gray-400 !important;
 }
 
+.nav-link {
+  color: white;
+}
+
+.nav-link:hover {
+  color: grey;
+}
+
 body,
 nav {
   background-color: $purple-300 !important;
