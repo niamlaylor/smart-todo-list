@@ -1,20 +1,37 @@
 @import "../../../node_modules/bootstrap/scss/functions";
 
+@mixin bebas {
+  font-family: "Bebas Neue", cursive;
+}
+
+@mixin satisfy {
+  font-family: "Satisfy", cursive;
+}
+
 .nav-logo-word-1 {
-  font-family: "Bebas Neue", cursive !important;
-  font-size: 2rem !important;
+  @include bebas;
+  font-size: 2rem;
 }
 
 .nav-logo-word-2 {
-  font-family: "Satisfy", cursive !important;
-  font-size: 1.7rem !important;
+  @include satisfy;
+  font-size: 1.7rem;
 }
 
 @import "../../../node_modules/bootstrap/scss/variables";
 @import "../../../node_modules/bootstrap/scss/mixins";
 
+.index-logo-word-1 {
+  @include bebas;
+}
+
+.index-logo-word-2 {
+  @include satisfy;
+  color: $orange-400;
+}
+
 .grey-custom {
-  background-color: $gray-400 !important;
+  background-color: $gray-400;
 }
 
 .nav-link {
@@ -25,10 +42,14 @@
   color: grey;
 }
 
-body,
+body {
+  background-color: $purple-300;
+  background-image: var(--bs-gradient);
+}
+
 nav {
-  background-color: $purple-300 !important;
-  background-image: var(--bs-gradient) !important;
+  background-color: $purple-400;
+  background-image: var(--bs-gradient);
 }
 
 body {
