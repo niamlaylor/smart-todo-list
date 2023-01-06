@@ -2,8 +2,8 @@ const express = require('express');
 const cookieSession = require('cookie-session');
 const router  = express.Router();
 
-router.get('/', (req, res) => {
-
+router.post('/', (req, res) => {
+  console.log(req.body);
 });
 
 module.exports = router;
