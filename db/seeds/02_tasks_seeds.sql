@@ -1,4 +1,7 @@
--- Widgets table seeds here (Example)
-INSERT INTO widgets (name, user_id) VALUES ('Sprockets', 1);
-INSERT INTO widgets (name, user_id) VALUES ('Chains', 2);
-INSERT INTO widgets (name, user_id) VALUES ('Bearings', 2);
+-- Tasks table seeds here (Example)
+-- TODO: Drop records before seeding
+
+
+INSERT INTO tasks (id, user_id, task_name, category, due_date, date_created, priority, is_active) 
+VALUES (1, 1, 'Pocahontas', 'To watch', NOW(), DATE '2023-01-01', false, true),
+       (2, 2, 'Harry Potter', 'To read', NOW(), DATE '2023-01-07', true, true);
