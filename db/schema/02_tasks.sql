@@ -11,4 +11,4 @@ CREATE TABLE tasks (
   date_created DATE NOT NULL,
   priority BOOLEAN NOT NULL,
   is_active BOOLEAN NOT NULL
-);
+); 
