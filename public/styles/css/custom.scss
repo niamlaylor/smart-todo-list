@@ -10,17 +10,17 @@
   font-size: 1.7rem !important;
 }
 
-@import "../../../node_modules/bootstrap/scss/_variables.scss";
+@import "../../../node_modules/bootstrap/scss/variables";
 @import "../../../node_modules/bootstrap/scss/mixins";
 
-.card-header-grey {
-  background-color: $gray-500 !important;
+.grey-custom {
+  background-color: $gray-400 !important;
 }
 
 body,
 nav {
-  background-color: $purple-300;
-  background-image: var(--bs-gradient);
+  background-color: $purple-300 !important;
+  background-image: var(--bs-gradient) !important;
 }
 
 body {
