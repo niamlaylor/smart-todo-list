@@ -41,13 +41,20 @@
   </head>
 
   <!-- Main HTML -->
-    <!-- Login Modal -->
-    <div class="text-center mt-5">
-      <h1 class="display-1 index-logo-word-1 text-muted my-1">List<small class="index-logo-word-2">Easy</small></h1>
-      <p class="lead text-light mb-1">Login or register to start adding tasks</p>
-      <div class="mt-3">
-        <button class="btn btn-primary mr-5">Login</button>
-        <button class="btn btn-secondary">Register</button>
+  <!-- Login Modal -->
+  <body>
+    <div class="d-flex align-items-center justify-content-center h-75">
+      <div class="text-center mt-5">
+        <h1 class="display-1 index-logo-word-1 text-muted my-1">
+          List<small class="index-logo-word-2">Easy</small>
+        </h1>
+        <p class="lead text-light mb-1">
+          Login or register to start adding tasks
+        </p>
+        <div class="mt-3">
+          <button class="btn btn-primary mr-5">Login</button>
+          <button class="btn btn-secondary">Register</button>
+        </div>
       </div>
     </div>
     <div
@@ -75,11 +82,22 @@
             <form method="POST" action="/login">
               <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
-                <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="userEmail"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter email"
+                />
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                  placeholder="Password"
+                />
               </div>
               <div class="modal-footer">
                 <button
@@ -93,11 +111,12 @@
                   type="submit"
                   class="btn btn-primary"
                   data-dismiss="modal"
-                >Login</button>
+                >
+                  Login
+                </button>
               </div>
             </form>
           </div>
-
         </div>
       </div>
     </div>
