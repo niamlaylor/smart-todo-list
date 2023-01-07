@@ -1,10 +1,12 @@
 const express = require("express");
-const { addTask } = require('../db/queries/tasks_queries')
+const { addTask, deleteTask } = require('../db/queries/tasks_queries')
 const router = express.Router();
 
 router.post('/', (req, res) => {
   const task = req.body;
-  console.log(req.body, req.session);
+
+  // The category 'to watch' is placeholder for now. Ths will be determined by the API call
+  addTask(req.session.user_id, 'To watch', task);
   res.redirect('/tasks');
 });
 
@@ -19,6 +21,9 @@ router.patch('/', (req, res) => {
 
 // For this route we delete the value of req.params
 router.delete('/:task_id', (req, res) => {
+  // Need to test if this works with the db queries
+  deleteTask(req.session.user_id, req.params.task_id);
+  res.redirect('/tasks');
 });
 
 module.exports = router;
