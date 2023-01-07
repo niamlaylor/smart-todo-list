@@ -1,7 +1,9 @@
-const db = require('../connection');
+const db = require("../connection");
 
 const getUsersTask = (userId) => {
-  return db.query(`
+  return db
+    .query(
+      `
   SELECT * FROM tasks
   WHERE user_id = $1`, [userId])
     .then(data => {
@@ -26,9 +28,11 @@ const addTask = (params) => {
   return db.query(text, values)
     .then(data => 'added');
 };
-  
+
 const getTask = (taskId) => {
-  return db.query(`
+  return db
+    .query(
+      `
   SELECT * FROM tasks
   WHERE id = $1`, [taskId])
     .then(data => {
@@ -72,14 +76,18 @@ const editTask = (params) => {
   }
 
   values.push(params.userId, params.taskId);
-  text += `WHERE user_id = $${values.length - 1} AND id = $${values.length} RETURNING *`;
+  text += `WHERE user_id = $${values.length - 1} AND id = $${
+    values.length
+  } RETURNING *`;
 
   return db.query(text, values)
     .then(data => data.rows[0]);
 };
 
 const deleteTask = (userId, taskId) => {
-  return db.query(`
+  return db
+    .query(
+      `
   DELETE FROM tasks
   WHERE user_id = $1 AND id = $2 RETURNING *`, [userId, taskId])
     .then(data => data.rows);
