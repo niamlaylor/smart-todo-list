@@ -47,11 +47,12 @@
       <div class="row justify-content-center">
         <div class="col-4">
           <h2 class="text-center mb-3">Add Task</h2>
-          <form>
+          <form method="POST" action="/tasks">
             <div class="input-group mb-3">
               <input
                 type="text"
                 class="form-control"
+                name="task-name"
                 placeholder="Enter a new task"
                 aria-label="Task"
                 aria-describedby="task-button"
@@ -59,7 +60,7 @@
               <div class="input-group-append">
                 <button
                   class="btn btn-outline-secondary grey-custom"
-                  type="button"
+                  type="submit"
                   id="task-button"
                 >
                   <i class="fa-solid fa-plus"></i>
