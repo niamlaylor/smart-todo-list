@@ -1,21 +1,33 @@
-const db = require('../connection');
+const db = require("../connection");
 
 const getUsersTask = (userId) => {
-  return db.query(`
+  return db
+    .query(
+      `
   SELECT * FROM tasks
-  WHERE user_id = $1`, [userId])
-    .then(data => {
+  WHERE user_id = $1`,
+      [userId]
+    )
+    .then((data) => {
       return data.rows;
     });
 };
 
 const addTask = (params) => {
-  let text = (`
+  let text = `
   INSERT INTO tasks (user_id, task_name, category, due_date, date_created, priority, is_active)
-  VALUES(`);
+  VALUES(`;
   let values = [];
 
-  const fields = ["user_id", "task_name", "category", "due_date", "date_created", "priority", "is_active"];
+  const fields = [
+    "user_id",
+    "task_name",
+    "category",
+    "due_date",
+    "date_created",
+    "priority",
+    "is_active",
+  ];
 
   fields.map((val, index) => {
     values.push(params[val]);
@@ -23,22 +35,25 @@ const addTask = (params) => {
     else text += `$${values.length})`;
   });
 
-  return db.query(text, values)
-    .then(data => 'added');
+  return db.query(text, values).then((data) => "added");
 };
 
 const getTask = (taskId) => {
-  return db.query(`
+  return db
+    .query(
+      `
   SELECT * FROM tasks
-  WHERE id = $1`, [taskId])
-    .then(data => {
+  WHERE id = $1`,
+      [taskId]
+    )
+    .then((data) => {
       if (data.rows.length > 0) return data.rows[0];
       return null;
     });
 };
 
 const editTask = (params) => {
-  let text = (`UPDATE tasks SET `);
+  let text = `UPDATE tasks SET `;
   let values = [];
 
   if (params.task_name) {
@@ -72,17 +87,22 @@ const editTask = (params) => {
   }
 
   values.push(params.userId, params.taskId);
-  text += `WHERE user_id = $${values.length - 1} AND id = $${values.length} RETURNING *`;
+  text += `WHERE user_id = $${values.length - 1} AND id = $${
+    values.length
+  } RETURNING *`;
 
-  return db.query(text, values)
-    .then(data => data.rows[0]);
+  return db.query(text, values).then((data) => data.rows[0]);
 };
 
 const deleteTask = (userId, taskId) => {
-  return db.query(`
+  return db
+    .query(
+      `
   DELETE FROM tasks
-  WHERE user_id = $1 AND id = $2 RETURNING *`, [userId, taskId])
-    .then(data => data.rows);
+  WHERE user_id = $1 AND id = $2 RETURNING *`,
+      [userId, taskId]
+    )
+    .then((data) => data.rows);
 };
 
 module.exports = { getUsersTask, addTask, getTask, editTask, deleteTask };
