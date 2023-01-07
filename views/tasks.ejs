@@ -120,9 +120,11 @@
           </div>
         </div>
         <div class="card">
-          <div class="card-header grey-custom">Miscellaneous</div>
+          <div class="card-header grey-custom">Testing dynamic tasks</div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Do we need this one?</li>
+            <% for (let id in tasks) { %>
+            <li class="list-group-item"><%= tasks[id].task_name %></li>
+            <% } %>
           </ul>
           <div class="card-footer mt-auto grey-custom">
             <small class="text">test</small>
