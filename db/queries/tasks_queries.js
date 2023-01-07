@@ -4,14 +4,27 @@ const getUsersTask = (userId) => {
   return db.query(`
   SELECT * FROM tasks
   WHERE user_id = $1`, [userId])
-    .then(data => data.rows);
+    .then(data => {
+      return data.rows;
+    });
 };
 
-const addTask = (userId, category, taskName) => {
-  return db.query(`
-  INSERT INTO tasks (user_id, category, task_name)
-  VALUES ($1, $2, $3) RETURNING *`, [userId, category, taskName])
-    .then(data => data.rows[0]);
+const addTask = (params) => {
+  let text = (`
+  INSERT INTO tasks (user_id, task_name, category, due_date, date_created, priority, is_active)
+  VALUES(`);
+  let values = [];
+
+  const fields = ["user_id", "task_name", "category", "due_date", "date_created", "priority", "is_active"];
+
+  fields.map((val, index) => {
+    values.push(params[val]);
+    if (index < fields.length - 1) text += `$${values.length}, `;
+    else text += `$${values.length})`;
+  });
+
+  return db.query(text, values)
+    .then(data => 'added');
 };
   
 const getTask = (taskId) => {
@@ -25,7 +38,7 @@ const getTask = (taskId) => {
 };
 
 const editTask = (params) => {
-  let text = (`UPDATE items SET `);
+  let text = (`UPDATE tasks SET `);
   let values = [];
 
   if (params.task_name) {
@@ -69,7 +82,7 @@ const deleteTask = (userId, taskId) => {
   return db.query(`
   DELETE FROM tasks
   WHERE user_id = $1 AND id = $2 RETURNING *`, [userId, taskId])
-    .then(data => 'deleted');
+    .then(data => data.rows);
 };
 
 module.exports = { getUsersTask, addTask, getTask, editTask, deleteTask };

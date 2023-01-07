@@ -1,5 +1,5 @@
 const express = require("express");
-const { addTask, deleteTask, getUsersTask } = require('../db/queries/tasks_queries')
+const { addTask, deleteTask, getUsersTask } = require('../db/queries/tasks_queries');
 const router = express.Router();
 
 router.post('/', (req, res) => {
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
 router.patch('/', (req, res) => {
   // This is for updating a task
-})
+});
 
 // For this route we delete the value of req.params
 router.delete('/:task_id', (req, res) => {

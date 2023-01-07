@@ -11,6 +11,15 @@ const USER_ID_WITH_TASKS = 1;
 const USER_ID_WITHOUT_TASKS = 3;
 const TASK_ID_THAT_EXISTS = 1;
 const TASK_ID_THAT_DOE_NOT_EXIST = 9999999;
+const MOCK_TASK = {
+  user_id: 1,
+  task_name: 'Slay Voldemort',
+  category: 'Gryffindor',
+  due_date: '2023-02-01',
+  date_created: new Date().toISOString(),
+  priority: false,
+  is_active: true
+};
 
 describe('getUsersTask', function() {
 
@@ -48,7 +57,8 @@ describe('addTask', function() {
 
   it('should fail if user id is not specified', async () => {
     try {
-      await addTask(null, 'Harry Potter', 'Defeat Voldemort');
+      const params = {};
+      await addTask(params);
       assert(false, 'throws an error if the user id is null');
     } catch (e) {
       null; //stub expression so the linter isn't triggered
@@ -57,9 +67,8 @@ describe('addTask', function() {
 
   it('should save a task to the database', async () => {
     const tasksBefore = await getUsersTask(USER_ID_WITH_TASKS);
-    await addTask(1, 'Concerts I Need to See', 'The Wiggles');
+    await addTask(MOCK_TASK);
     const tasksAfter = await getUsersTask(USER_ID_WITH_TASKS);
-    console.log(tasksBefore, tasksAfter);
     assert(tasksAfter.length > tasksBefore.length, 'addTask adds a task to the database');
   });
   
@@ -77,7 +86,7 @@ describe('getTask', function() {
   });
 
   it('should return a task if one exists', async () => {
-    const task = await getTask(TASK_ID_THAT_EXISTS);
+    const task = await getTask(2);
     assert(task instanceof Object && !(task instanceof Array), 'returns a task as an object');
     assert(task && task.id, 'returns a task that has an id');
   });
