@@ -1,5 +1,5 @@
 const express = require("express");
-const { addTask, deleteTask } = require('../db/queries/tasks_queries')
+const { addTask, deleteTask, getUsersTask } = require('../db/queries/tasks_queries')
 const router = express.Router();
 
 router.post('/', (req, res) => {
@@ -11,7 +11,8 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  const templateVars = { user_id: req.session.user_id };
+  const userTasks = getUsersTask(req.session.user_id);
+  const templateVars = { user_id: req.session.user_id, tasks: userTasks };
   res.render('tasks', templateVars);
 });
 
