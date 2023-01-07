@@ -9,23 +9,21 @@ const {
 const router = express.Router();
 
 router.post("/", (req, res) => {
-  const task = req.body;
-  console.log(req.body);
-  console.log(req.body["task-name"]);
-
   // The category 'to watch' is placeholder for now. Ths will be determined by the API call
   let url = `https://www.omdbapi.com/?t=${req.body["task-name"]}&apikey=a53781da`;
   request.get(url, (error, response, body) => {
     parsedData = JSON.parse(body);
     if (!error && response.statusCode === 200) {
       console.log(`Request successful! ${parsedData.Type}`);
-      addTask(
+      addTask({
         user_id: req.session.user_id,
+        task_name: req.body["task_name"],
         category: parsedData.Type,
-        req.body["task-name"],
         due_date: new Date().toISOString(),
         date_created: new Date().toISOString(),
-      );
+        priority: false,
+        is_active: true,
+      });
     }
   });
   // addTask(req.session.user_id, "To watch", task);
