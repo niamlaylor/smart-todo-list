@@ -8,7 +8,7 @@ router.use(cookieSession({
 }));
 
 router.post('/', (req, res) => {
-  req.session.username = req.body.email;
+  req.session.user_id = 2;
   res.redirect('/tasks');
 });
 
