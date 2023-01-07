@@ -1,10 +1,11 @@
 const express = require("express");
-const { addTask } = require('../db/queries/')
+const { addTask } = require('../db/queries/tasks_queries')
 const router = express.Router();
 
 router.post('/', (req, res) => {
-  console.log('Post request worked for tasks!');
-  res.redirect('/');
+  const task = req.body;
+  console.log(req.body, req.session);
+  res.redirect('/tasks');
 });
 
 router.get('/', (req, res) => {
