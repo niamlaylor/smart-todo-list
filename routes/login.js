@@ -9,7 +9,7 @@ router.use(cookieSession({
 
 router.post('/', (req, res) => {
   req.session.user_id = 2;
-  console.log(req.session.user_id)
+  console.log(req.session.user_id);
   res.redirect('/tasks');
 });
 

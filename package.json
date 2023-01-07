@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
-    "db:reset": "node bin/resetdb.js"
+    "db:reset": "node bin/resetdb.js",
+    "db:test": "npm run db:reset && node_modules/mocha/bin/_mocha db/test.js --exit",
+    "watch:sass": ""
   },
   "author": "Lighthouse Labs",
   "license": "ISC",
@@ -23,6 +25,8 @@
     "sass": "^1.35.1"
   },
   "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
     "nodemon": "^2.0.10"
   }
 }
