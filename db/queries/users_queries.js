@@ -18,4 +18,13 @@ const getUserById = (id) => {
     });
 };
 
-module.exports = { getUsers, getUserById };
+const getUserByEmail = (id) => {
+  return db.query(`
+  SELECT * FROM users 
+  WHERE email = $1`, [id])
+    .then(data => {
+      return data.rows;
+    });
+};
+
+module.exports = { getUsers, getUserById, getUserByEmail };

@@ -23,7 +23,7 @@ const MOCK_TASK = {
 
 describe('getUsersTask', function() {
 
-  it('should fail if no user id is specified',async () => {
+  it('should fail if no user id is specified',async() => {
     try {
       await getUsersTask(null);
       assert(false);
@@ -32,19 +32,19 @@ describe('getUsersTask', function() {
     }
   });
 
-  it('should return an array', async () => {
+  it('should return an array', async() => {
     const tasks = await getUsersTask(USER_ID_WITH_TASKS);
     assert(typeof tasks === typeof [], 'returns an array when there are results');
     const noTasks = await getUsersTask(USER_ID_WITHOUT_TASKS);
     assert(typeof noTasks === typeof [], 'returns an array when there are no results');
   });
 
-  it('should return data when data exists', async () => {
+  it('should return data when data exists', async() => {
     const tasks = await getUsersTask(USER_ID_WITH_TASKS);
     assert(tasks && tasks.length > 0, 'data is being returned');
   });
 
-  it('should only return rows with the correct user id', async () => {
+  it('should only return rows with the correct user id', async() => {
     const tasks = await getUsersTask(USER_ID_WITH_TASKS);
     tasks.filter(item => {
       assert(item.user_id === USER_ID_WITH_TASKS, 'item.user_id is the same as the test id');
@@ -55,7 +55,7 @@ describe('getUsersTask', function() {
 
 describe('addTask', function() {
 
-  it('should fail if user id is not specified', async () => {
+  it('should fail if user id is not specified', async() => {
     try {
       const params = {};
       await addTask(params);
@@ -65,7 +65,7 @@ describe('addTask', function() {
     }
   });
 
-  it('should save a task to the database', async () => {
+  it('should save a task to the database', async() => {
     const tasksBefore = await getUsersTask(USER_ID_WITH_TASKS);
     await addTask(MOCK_TASK);
     const tasksAfter = await getUsersTask(USER_ID_WITH_TASKS);
@@ -76,7 +76,7 @@ describe('addTask', function() {
 
 describe('getTask', function() {
 
-  it('should fail if the taskId is null', async () => {
+  it('should fail if the taskId is null', async() => {
     try {
       await getTask(null);
       assert(false, 'throws an error if taskId is null');
@@ -85,13 +85,13 @@ describe('getTask', function() {
     }
   });
 
-  it('should return a task if one exists', async () => {
+  it('should return a task if one exists', async() => {
     const task = await getTask(2);
     assert(task instanceof Object && !(task instanceof Array), 'returns a task as an object');
     assert(task && task.id, 'returns a task that has an id');
   });
 
-  it('should return null for a task that does not exist', async () => {
+  it('should return null for a task that does not exist', async() => {
     const task = await getTask(TASK_ID_THAT_DOE_NOT_EXIST);
     assert(task === null, 'returns null for a task that does not exist');
   });
@@ -100,7 +100,7 @@ describe('getTask', function() {
 
 describe('deleteTask', function() {
 
-  it('should fail if any of the params are non-numeric', async () => {
+  it('should fail if any of the params are non-numeric', async() => {
     try {
       await deleteTask(null, null);
       assert(false, 'fails when both userId and taskId are null');
@@ -121,7 +121,7 @@ describe('deleteTask', function() {
     }
   });
 
-  it('should remove a task from the database if one exists', async () => {
+  it('should remove a task from the database if one exists', async() => {
     const tasksBefore = await getUsersTask(USER_ID_WITH_TASKS);
     await deleteTask(USER_ID_WITH_TASKS, tasksBefore[0].id);
     const tasksAfter = await getUsersTask(USER_ID_WITH_TASKS);
