@@ -1,5 +1,8 @@
 const express = require("express");
 const request = require("request");
+const { addTask, deleteTask, getUsersTask } = require('../db/queries/tasks_queries');
+const router = express.Router();
+
 
 const {
   addTask,
@@ -30,10 +33,15 @@ router.post("/", (req, res) => {
   res.redirect("/tasks");
 });
 
-router.get("/", (req, res) => {
-  const userTasks = getUsersTask(req.session.user_id);
-  const templateVars = { user_id: req.session.user_id, tasks: userTasks };
-  res.render("tasks", templateVars);
+router.get('/', (req, res) => {
+  let apiTasks;
+  request('http://localhost:8080/api/tasks', function (error, response, body) {
+    apiTasks = JSON.parse(body);
+    const templateVars = { user_id: req.session.user_id, tasks: apiTasks.tasks };
+    console.log(templateVars);
+    res.render('tasks', templateVars);
+  });
+
 });
 
 router.patch("/", (req, res) => {

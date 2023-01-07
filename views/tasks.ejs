@@ -122,8 +122,8 @@
         <div class="card">
           <div class="card-header grey-custom">Testing dynamic tasks</div>
           <ul class="list-group list-group-flush">
-            <% for (let id in tasks) { %>
-            <li class="list-group-item"><%= tasks[id].task_name %></li>
+            <% for (let task of tasks) { %>
+            <li class="list-group-item"><%= tasks[task] %></li>
             <% } %>
           </ul>
           <div class="card-footer mt-auto grey-custom">
