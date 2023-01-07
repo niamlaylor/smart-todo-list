@@ -59,7 +59,7 @@ app.use("/logout", logoutRoutes);
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  const templateVars = { username: req.session.username };
+  const templateVars = { user_id: req.session.user_id };
   res.render("index", templateVars);
 });
 

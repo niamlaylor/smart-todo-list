@@ -9,7 +9,7 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  const templateVars = { username: req.session.username };
+  const templateVars = { user_id: req.session.user_id };
   res.render('tasks', templateVars);
 });
 
