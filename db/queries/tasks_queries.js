@@ -26,7 +26,7 @@ const addTask = (params) => {
   return db.query(text, values)
     .then(data => 'added');
 };
-  
+
 const getTask = (taskId) => {
   return db.query(`
   SELECT * FROM tasks
