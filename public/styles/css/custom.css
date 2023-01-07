@@ -1,0 +1,44 @@
+.nav-logo-word-1 {
+  font-family: "Bebas Neue", cursive;
+  font-size: 2rem;
+}
+
+.nav-logo-word-2 {
+  font-family: "Satisfy", cursive;
+  font-size: 1.7rem;
+}
+
+.index-logo-word-1 {
+  font-family: "Bebas Neue", cursive;
+}
+
+.index-logo-word-2 {
+  font-family: "Satisfy", cursive;
+  color: #fd9843;
+}
+
+.grey-custom {
+  background-color: #ced4da;
+}
+
+.nav-link {
+  color: white;
+}
+
+.nav-link:hover {
+  color: grey;
+}
+
+body {
+  background-color: #a98eda;
+  background-image: var(--bs-gradient);
+}
+
+nav {
+  background-color: #8c68cd;
+  background-image: var(--bs-gradient);
+}
+
+body {
+  height: 100vh;
+}
