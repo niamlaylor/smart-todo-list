@@ -20,10 +20,11 @@ router.post("/", (req, res) => {
     if (!error && response.statusCode === 200) {
       console.log(`Request successful! ${parsedData.Type}`);
       addTask(
-        req.session.user_id,
-        parsedData.Type,
+        user_id: req.session.user_id,
+        category: parsedData.Type,
         req.body["task-name"],
-        Date.now()
+        due_date: new Date().toISOString(),
+        date_created: new Date().toISOString(),
       );
     }
   });

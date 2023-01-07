@@ -5,23 +5,28 @@ const getUsersTask = (userId) => {
     .query(
       `
   SELECT * FROM tasks
-  WHERE user_id = $1`,
-      [userId]
-    )
-    .then((data) => data.rows)
-    .catch((err) => console.error(this, "query failed", err.stack));
+  WHERE user_id = $1`, [userId])
+    .then(data => {
+      return data.rows;
+    });
 };
 
-const addTask = (userId, category, taskName) => {
-  return db
-    .query(
-      `
-  INSERT INTO tasks (user_id, category, task_name)
-  VALUES ($1, $2, $3) RETURNING *`,
-      [userId, category, taskName]
-    )
-    .then((data) => data.rows[0])
-    .catch((err) => console.error(this, "query failed", err.stack));
+const addTask = (params) => {
+  let text = (`
+  INSERT INTO tasks (user_id, task_name, category, due_date, date_created, priority, is_active)
+  VALUES(`);
+  let values = [];
+
+  const fields = ["user_id", "task_name", "category", "due_date", "date_created", "priority", "is_active"];
+
+  fields.map((val, index) => {
+    values.push(params[val]);
+    if (index < fields.length - 1) text += `$${values.length}, `;
+    else text += `$${values.length})`;
+  });
+
+  return db.query(text, values)
+    .then(data => 'added');
 };
 
 const getTask = (taskId) => {
@@ -29,15 +34,15 @@ const getTask = (taskId) => {
     .query(
       `
   SELECT * FROM tasks
-  WHERE id = $1`,
-      [taskId]
-    )
-    .then((data) => data.rows)
-    .catch((err) => console.error(this, "query failed", err.stack));
+  WHERE id = $1`, [taskId])
+    .then(data => {
+      if (data.rows.length > 0) return data.rows[0];
+      return null;
+    });
 };
 
 const editTask = (params) => {
-  let text = `UPDATE items SET `;
+  let text = (`UPDATE tasks SET `);
   let values = [];
 
   if (params.task_name) {
@@ -75,10 +80,8 @@ const editTask = (params) => {
     values.length
   } RETURNING *`;
 
-  return db
-    .query(text, values)
-    .then((data) => data.rows[0])
-    .catch((err) => console.error(this, "query failed", err.stack));
+  return db.query(text, values)
+    .then(data => data.rows[0]);
 };
 
 const deleteTask = (userId, taskId) => {
@@ -86,11 +89,8 @@ const deleteTask = (userId, taskId) => {
     .query(
       `
   DELETE FROM tasks
-  WHERE user_id = $1 AND id = $2 RETURNING *`,
-      [userId, taskId]
-    )
-    .then((data) => "deleted")
-    .catch((err) => console.error(this, "query failed", err.stack));
+  WHERE user_id = $1 AND id = $2 RETURNING *`, [userId, taskId])
+    .then(data => data.rows);
 };
 
 module.exports = { getUsersTask, addTask, getTask, editTask, deleteTask };
