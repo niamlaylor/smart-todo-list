@@ -6,28 +6,15 @@ const {
   deleteTask,
   getUsersTask,
 } = require("../db/queries/tasks_queries");
+const { callApi } = require("../helpers/call-api-functions");
 const router = express.Router();
 
 router.post("/", (req, res) => {
   // The category 'to watch' is placeholder for now. Ths will be determined by the API call
-  axios
-    .get(`https://www.omdbapi.com/?t=${req.body["task-name"]}&apikey=a53781da`)
-    .then((response) => {
-      const parsedData = response.data;
-      console.log(`Request successful! ${parsedData.Type}`);
-      addTask({
-        user_id: req.session.user_id,
-        task_name: req.body["task_name"],
-        category: "To watch",
-        due_date: new Date().toISOString(),
-        date_created: new Date().toISOString(),
-        priority: false,
-        is_active: true,
-      });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+
+  // Helper function that will call all APIs, currently just calls movieAPI
+  callApi(req.body["task_name"], req.session.user_id);
+
   res.redirect("/tasks");
 });
 
