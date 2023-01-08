@@ -1,4 +1,5 @@
 // Client facing scripts here
+const { getTask } = require('../../db/queries/tasks_queries');
 
 // This function prevents malicious entries in the task textarea
 const escape = function(str) {
