@@ -1,9 +1,6 @@
 const express = require("express");
 const request = require("request");
-const { addTask, deleteTask, getUsersTask } = require('../db/queries/tasks_queries');
-const router = express.Router();
-
-
+const axios = require("axios");
 const {
   addTask,
   deleteTask,
@@ -13,35 +10,40 @@ const router = express.Router();
 
 router.post("/", (req, res) => {
   // The category 'to watch' is placeholder for now. Ths will be determined by the API call
-  let url = `https://www.omdbapi.com/?t=${req.body["task-name"]}&apikey=a53781da`;
-  request.get(url, (error, response, body) => {
-    parsedData = JSON.parse(body);
-    if (!error && response.statusCode === 200) {
+  axios
+    .get(`https://www.omdbapi.com/?t=${req.body["task-name"]}&apikey=a53781da`)
+    .then((response) => {
+      const parsedData = response.data;
       console.log(`Request successful! ${parsedData.Type}`);
       addTask({
         user_id: req.session.user_id,
         task_name: req.body["task_name"],
-        category: parsedData.Type,
+        category: "To watch",
         due_date: new Date().toISOString(),
         date_created: new Date().toISOString(),
         priority: false,
         is_active: true,
       });
-    }
-  });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
   // addTask(req.session.user_id, "To watch", task);
   res.redirect("/tasks");
 });
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   let apiTasks;
-  request('http://localhost:8080/api/tasks', function (error, response, body) {
+  request("http://localhost:8080/api/tasks", function (error, response, body) {
     apiTasks = JSON.parse(body);
-    const templateVars = { user_id: req.session.user_id, tasks: apiTasks.tasks };
+    const templateVars = {
+      user_id: req.session.user_id,
+      tasks: apiTasks.tasks,
+    };
     console.log(templateVars);
-    res.render('tasks', templateVars);
+    res.render("tasks", templateVars);
   });
-
 });
 
 router.patch("/", (req, res) => {
