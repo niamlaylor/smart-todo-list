@@ -28,8 +28,6 @@ router.post("/", (req, res) => {
     .catch((error) => {
       console.log(error);
     });
-
-  // addTask(req.session.user_id, "To watch", task);
   res.redirect("/tasks");
 });
 
