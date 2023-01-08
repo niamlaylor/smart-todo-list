@@ -11,7 +11,10 @@ const router = express.Router();
 
 router.post("/", (req, res) => {
   // The category 'to watch' is placeholder for now. Ths will be determined by the API call
+
+  // Helper function that will call all APIs, currently just calls movieAPI
   callApi(req.body["task_name"], req.session.user_id);
+
   res.redirect("/tasks");
 });
 
