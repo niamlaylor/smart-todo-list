@@ -78,9 +78,10 @@
         <div class="card">
           <div class="card-header grey-custom">To Watch</div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Knives Out</li>
-            <li class="list-group-item">Horton Hears a Who</li>
-            <li class="list-group-item">Interstellar</li>
+            <% for (let task of tasks) { %>
+            <% if (task.category === 'To watch') { %>
+              <li class="list-group-item"><%= task.task_name %></li>
+              <% }} %>
           </ul>
           <div class="card-footer mt-auto grey-custom">
             <small class="text">test</small>
@@ -89,9 +90,10 @@
         <div class="card">
           <div class="card-header grey-custom">To Read</div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Harry Potter</li>
-            <li class="list-group-item">Game of Thrones</li>
-            <li class="list-group-item">1984</li>
+            <% for (let task of tasks) { %>
+              <% if (task.category === 'To read') { %>
+                <li class="list-group-item"><%= task.task_name %></li>
+                <% }} %>
           </ul>
           <div class="card-footer mt-auto grey-custom">
             <small class="text">test</small>
@@ -100,9 +102,10 @@
         <div class="card">
           <div class="card-header grey-custom">To Eat</div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Savio Volpe</li>
-            <li class="list-group-item">McDonalds</li>
-            <li class="list-group-item">Published on Main</li>
+            <% for (let task of tasks) { %>
+              <% if (task.category === 'To eat') { %>
+                <li class="list-group-item"><%= task.task_name %></li>
+                <% }} %>
           </ul>
           <div class="card-footer mt-auto grey-custom">
             <small class="text">test</small>
@@ -111,20 +114,10 @@
         <div class="card">
           <div class="card-header grey-custom">To Buy</div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Hat</li>
-            <li class="list-group-item">Dog Food</li>
-            <li class="list-group-item">Keyboard</li>
-          </ul>
-          <div class="card-footer mt-auto grey-custom">
-            <small class="text">test</small>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header grey-custom">Testing dynamic tasks</div>
-          <ul class="list-group list-group-flush">
             <% for (let task of tasks) { %>
-            <li class="list-group-item"><%= tasks[task] %></li>
-            <% } %>
+              <% if (task.category === 'To buy') { %>
+                <li class="list-group-item"><%= task.task_name %></li>
+                <% }} %>
           </ul>
           <div class="card-footer mt-auto grey-custom">
             <small class="text">test</small>
