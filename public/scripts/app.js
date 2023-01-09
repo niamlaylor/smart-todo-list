@@ -27,7 +27,6 @@ const getContainerName = (category) => {
 
 const renderTasks = function(tasks) {
   for (const task of tasks) {
-    console.log(task.task_name)
     const jqueryContainer = '#' + getContainerName(task.category);
     $(`${jqueryContainer}`).prepend(createTaskElement(task.task_name));
   }
