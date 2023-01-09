@@ -49,7 +49,7 @@ router.post("/", (req, res) => {
               priority: false,
               is_active: true,
             });
-            let frontendData = { category: 'To read', data: response.data };
+            let frontendData = { category: 'To read', data: bookData };
             console.log('Book matched! Added task to To read');
             return res.send(frontendData);
           }
