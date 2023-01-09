@@ -21,6 +21,8 @@ const bookApi = function (task, userId) {
           priority: false,
           is_active: true,
         });
+      } else {
+        return Promise.resolve(false);
       }
     })
     .catch((error) => {
