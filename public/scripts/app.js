@@ -25,12 +25,12 @@ const getContainerName = (category) => {
   };
 };
 
-const renderTasks = function(tasks) {
-  for (const task of tasks) {
-    const jqueryContainer = '#' + getContainerName(task.category);
-    $(`${jqueryContainer}`).prepend(createTaskElement(task.task_name));
-  }
-};
+// const renderTasks = function(tasks) {
+//   for (const task of tasks) {
+//     const jqueryContainer = '#' + getContainerName(task.category);
+//     $(`${jqueryContainer}`).prepend(createTaskElement(task.task_name));
+//   }
+// };
 
 // {
 //   id: 1,
@@ -49,11 +49,14 @@ $(document).ready(function() {
     const taskData = $(this).serialize();
 
     $.post('/tasks', taskData)
-    .then(() => {
-      $.get('/api/tasks', (data, status) => {
-        renderTasks([data[data.length - 1]]);
-      })
-    });
+    .then((response) => {
+      console.log(response);
+      if (response.category === 'To watch') {
+        $('$to-watch-list').prepend((createTaskElement(response.title)));
+      } else if (response.category === 'To read') {
+        $('$to-read-list').prepend((createTaskElement(response.title)));
+      }
+    })
   });
 
   const loadTasks = function() {
