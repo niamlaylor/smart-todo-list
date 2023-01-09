@@ -25,10 +25,8 @@ const apiChecker = (task, responseTitle) => {
     }
   }
 
-  taskWordsPresent / responseTitleWordsCount >= 0.2 ? match = true : match = false;
+  taskWordsPresent / responseTitleWordsCount >= 0.3 ? match = true : match = false;
   return match;
 };
-
-apiChecker('Book One of the Travelers', 'Book Two of the Travelers');
 
 module.exports = { apiChecker };
