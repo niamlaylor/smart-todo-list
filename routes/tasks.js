@@ -2,6 +2,7 @@ const express = require("express");
 const request = require("request");
 const axios = require("axios");
 const { addTask, deleteTask } = require("../db/queries/tasks_queries");
+const { apiChecker } = require("../helpers/api-checker");
 const router = express.Router();
 
 router.post("/", (req, res) => {
@@ -17,7 +18,9 @@ router.post("/", (req, res) => {
     axios(`https://www.omdbapi.com/?t=${task}&apikey=a53781da`)
     .then((response) => {
       // If exact movie title match, then it will add to db and send to frontend with category 'To watch'
-      if (response.data["Title"] === task) {
+      const movieMatch = apiChecker(task, response.data.Title);
+
+      if (movieMatch) {
         addTask({
           user_id: userId,
           task_name: task,
@@ -28,18 +31,19 @@ router.post("/", (req, res) => {
           is_active: true,
         });
         let frontendData = { category: 'To watch', data: response.data };
-        console.log('Movie matched! Added task to To watch');
+        console.log(`Movie match was ${movieMatch}! Added task to 'To watch'`);
         return res.send(frontendData);
-
       }
       // If no luck with movie match, run the book api next
-      else if (response.data["Title"] !== task) {
+      else if (!movieMatch) {
         const API_KEY = "AIzaSyAFUzAdq321nVUZ4KvMFCwJ5YJb7TQv5pI";
         axios(`https://www.googleapis.com/books/v1/volumes?q=intitle:${task}&key=${API_KEY}&maxResults=1`)
         .then((bookResponse) => {
           const bookData = bookResponse.data.items[0].volumeInfo;
+          const bookMatch = apiChecker(task, bookData.title);
+
           // If exact book title match, then add book to db and send to frontend with category 'To read'
-          if (bookData.title === task) {
+          if (bookMatch) {
             addTask({
               user_id: userId,
               task_name: task,
@@ -50,7 +54,7 @@ router.post("/", (req, res) => {
               is_active: true,
             });
             let frontendData = { category: 'To read', data: bookData };
-            console.log('Book matched! Added task to To read');
+            console.log(`Book match was ${bookMatch}! Added task to 'To read'`);
             return res.send(frontendData);
           }
         })
