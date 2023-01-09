@@ -6,7 +6,7 @@ const { addTask } = require("../db/queries/tasks_queries");
  * @param {*} task
  * @param {*} userId
  */
-const movieApi = function (task, userId) {
+const movieApi = function(task, userId) {
   axios
     .get(`https://www.omdbapi.com/?t=${task}&apikey=a53781da`)
     .then((response) => {
