@@ -23,7 +23,7 @@ router.post("/", (req, res) => {
       if (movieMatch) {
         addTask({
           user_id: userId,
-          task_name: task,
+          task_name: response.data.Title,
           category: "To watch",
           due_date: new Date().toISOString(),
           date_created: new Date().toISOString(),
@@ -46,7 +46,7 @@ router.post("/", (req, res) => {
           if (bookMatch) {
             addTask({
               user_id: userId,
-              task_name: task,
+              task_name: bookData.title,
               category: "To read",
               due_date: new Date().toISOString(),
               date_created: new Date().toISOString(),
