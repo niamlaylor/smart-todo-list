@@ -52,9 +52,9 @@ $(document).ready(function() {
     .then((response) => {
       console.log(response);
       if (response.category === 'To watch') {
-        $('$to-watch-list').prepend((createTaskElement(response.title)));
+        $('#to-watch-list').prepend((createTaskElement(response.data.Title)));
       } else if (response.category === 'To read') {
-        $('$to-read-list').prepend((createTaskElement(response.title)));
+        $('#to-read-list').prepend((createTaskElement(response.data.title)));
       }
     })
   });
