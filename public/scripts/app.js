@@ -31,6 +31,20 @@ $(document).ready(function () {
     });
   });
 
+  $("#edit-user").submit(function (event) {
+    console.log("submit event activated");
+    event.preventDefault();
+
+    const formText = $(this).serialize();
+    $.post("/users/update-user", formText)
+      .then((data) => {
+        $("#userEmailDisplay").text(data.email);
+      })
+      .catch((error) => {
+        console.log(`Error: ${error}`);
+      });
+  });
+
   const loadTasks = function () {
     $.get("/api/tasks", function (data, status) {
       for (const task of data.tasks) {
