@@ -25,6 +25,7 @@ router.post("/update-user", (req, res) => {
   let values = [req.session.user_id, formEmail];
 
   if (formEmail.length > 3 && formPassword.length <= 3) {
+<<<<<<< Updated upstream
     console.log(`Adding JUST ${formEmail} to query`);
   } else if (formPassword.length > 3 && formEmail.length <= 3) {
     console.log(`Adding JUST ${formPassword} to query`);
@@ -32,6 +33,17 @@ router.post("/update-user", (req, res) => {
     values[1] = formPassword;
   } else if (formPassword.length > 3 && formEmail.length > 3) {
     console.log(`Adding BOTH ${formEmail} and ${formPassword} to query`);
+=======
+    console.log(`Updating users.email to: ${formEmail} in database`);
+  } else if (formPassword.length > 3 && formEmail.length <= 3) {
+    console.log(`Updating users.password to: ${formPassword} in database`);
+    queryString = `UPDATE users SET password = $2`;
+    values[1] = formPassword;
+  } else if (formPassword.length > 3 && formEmail.length > 3) {
+    console.log(
+      `Updating BOTH users.email and users.password to: ${formEmail} and ${formPassword} in database`
+    );
+>>>>>>> Stashed changes
     values.push(formPassword);
     queryString += `, password = $3`;
   } else {
@@ -40,7 +52,10 @@ router.post("/update-user", (req, res) => {
     return;
   }
   queryString = queryString + ` WHERE id = $1`;
+<<<<<<< Updated upstream
   console.log(queryString);
+=======
+>>>>>>> Stashed changes
 
   db.query(queryString, values)
     .then((data) => {
