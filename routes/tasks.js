@@ -2,6 +2,7 @@ const express = require("express");
 const request = require("request");
 const axios = require("axios");
 const { addTask, deleteTask } = require("../db/queries/tasks_queries");
+const { getUserById } = require("../db/queries/users_queries");
 const { apiChecker } = require("../helpers/api-checker");
 const router = express.Router();
 
@@ -13,70 +14,63 @@ router.post("/", (req, res) => {
   // Exact movie match: Harry Potter and the Deathly Hallows: Part 2
   // Exact book match: Book One of the Travelers
 
-  const runApi = function(task, userId) {
+  const runApi = function (task, userId) {
     // Start by running movie api
-    axios(`https://www.omdbapi.com/?t=${task}&apikey=a53781da`)
-    .then((response) => {
-      // If exact movie title match, then it will add to db and send to frontend with category 'To watch'
-      const movieMatch = apiChecker(task, response.data.Title);
+    axios(`https://www.omdbapi.com/?t=${task}&apikey=a53781da`).then(
+      (response) => {
+        // If exact movie title match, then it will add to db and send to frontend with category 'To watch'
+        const movieMatch = apiChecker(task, response.data.Title);
 
-      if (movieMatch) {
-        addTask({
-          user_id: userId,
-          task_name: response.data.Title,
-          category: "To watch",
-          due_date: new Date().toISOString(),
-          date_created: new Date().toISOString(),
-          priority: false,
-          is_active: true,
-        });
-        let frontendData = { category: 'To watch', data: response.data };
-        console.log(`Movie match was ${movieMatch}! Added task to 'To watch'`);
-        return res.send(frontendData);
-      }
-      // If no luck with movie match, run the book api next
-      else if (!movieMatch) {
-        const API_KEY = "AIzaSyAFUzAdq321nVUZ4KvMFCwJ5YJb7TQv5pI";
-        axios(`https://www.googleapis.com/books/v1/volumes?q=intitle:${task}&key=${API_KEY}&maxResults=1`)
-        .then((bookResponse) => {
-          const bookData = bookResponse.data.items[0].volumeInfo;
-          const bookMatch = apiChecker(task, bookData.title);
+        if (movieMatch) {
+          addTask({
+            user_id: userId,
+            task_name: response.data.Title,
+            category: "To watch",
+            due_date: new Date().toISOString(),
+            date_created: new Date().toISOString(),
+            priority: false,
+            is_active: true,
+          });
+          let frontendData = { category: "To watch", data: response.data };
+          console.log(
+            `Movie match was ${movieMatch}! Added task to 'To watch'`
+          );
+          return res.send(frontendData);
+        }
+        // If no luck with movie match, run the book api next
+        else if (!movieMatch) {
+          const API_KEY = "AIzaSyAFUzAdq321nVUZ4KvMFCwJ5YJb7TQv5pI";
+          axios(
+            `https://www.googleapis.com/books/v1/volumes?q=intitle:${task}&key=${API_KEY}&maxResults=1`
+          ).then((bookResponse) => {
+            const bookData = bookResponse.data.items[0].volumeInfo;
+            const bookMatch = apiChecker(task, bookData.title);
 
-          // If exact book title match, then add book to db and send to frontend with category 'To read'
-          if (bookMatch) {
-            addTask({
-              user_id: userId,
-              task_name: bookData.title,
-              category: "To read",
-              due_date: new Date().toISOString(),
-              date_created: new Date().toISOString(),
-              priority: false,
-              is_active: true,
-            });
-            let frontendData = { category: 'To read', data: bookData };
-            console.log(`Book match was ${bookMatch}! Added task to 'To read'`);
-            return res.send(frontendData);
-          }
-        })
+            // If exact book title match, then add book to db and send to frontend with category 'To read'
+            if (bookMatch) {
+              addTask({
+                user_id: userId,
+                task_name: bookData.title,
+                category: "To read",
+                due_date: new Date().toISOString(),
+                date_created: new Date().toISOString(),
+                priority: false,
+                is_active: true,
+              });
+              let frontendData = { category: "To read", data: bookData };
+              console.log(
+                `Book match was ${bookMatch}! Added task to 'To read'`
+              );
+              return res.send(frontendData);
+            }
+          });
+        }
+        let movieInfo = { category: "To watch", data: response.data };
       }
-      let movieInfo = { category: 'To watch', data: response.data };
-    });
+    );
   };
   runApi(taskName, user);
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 router.get("/", (req, res) => {
   let apiTasks;
