@@ -3,67 +3,47 @@ const request = require("request");
 const axios = require("axios");
 const { addTask, deleteTask } = require("../db/queries/tasks_queries");
 const { apiChecker } = require("../helpers/api-checker");
-const db = require('../db/connection');
+const db = require("../db/connection");
+const { searchSources } = require("../api/search-api");
+const { getTaskFromBook } = require("../api/book-api");
+const { getTaskFromEat } = require("../api/eats-api");
+const { getTaskFromProduct } = require("../api/buy-api");
+const { getTaskFromMovie } = require("../api/movie-api");
 const router = express.Router();
 
-router.post("/", (req, res) => {
-  // The category 'to watch' is placeholder for now. Ths will be determined by the API call
+router.post("/", async (req, res) => {
   const taskName = req.body.task_name;
-  const user = req.session.user_id;
+  const userId = req.session.user_id;
+  const results = await searchSources(taskName);
 
-  // Exact movie match: Harry Potter and the Deathly Hallows: Part 2
-  // Exact book match: Book One of the Travelers
+  // Pick a result randomly from the 4 api's we queried
+  const index = Math.floor(Math.random() * 4);
+  const MOVIE_INDEX = 0;
+  const BOOK_INDEX = 1;
+  const EAT_INDEX = 2;
+  const PRODUCT_INDEX = 3;
 
-  const runApi = function(task, userId) {
-    // Start by running movie api
-    axios(`https://www.omdbapi.com/?t=${task}&apikey=a53781da`)
-    .then((response) => {
-      // If exact movie title match, then it will add to db and send to frontend with category 'To watch'
-      const movieMatch = apiChecker(task, response.data.Title);
-
-      if (movieMatch) {
-        addTask({
-          user_id: userId,
-          task_name: response.data.Title,
-          category: "To watch",
-          due_date: new Date().toISOString(),
-          date_created: new Date().toISOString(),
-          priority: false,
-          is_active: true,
-        });
-        let frontendData = { category: 'To watch', data: response.data };
-        console.log(`Movie match was ${movieMatch}! Added task to 'To watch'`);
-        return res.send(frontendData);
-      }
-      // If no luck with movie match, run the book api next
-      else if (!movieMatch) {
-        const API_KEY = "AIzaSyAFUzAdq321nVUZ4KvMFCwJ5YJb7TQv5pI";
-        axios(`https://www.googleapis.com/books/v1/volumes?q=intitle:${task}&key=${API_KEY}&maxResults=1`)
-        .then((bookResponse) => {
-          const bookData = bookResponse.data.items[0].volumeInfo;
-          const bookMatch = apiChecker(task, bookData.title);
-
-          // If exact book title match, then add book to db and send to frontend with category 'To read'
-          if (bookMatch) {
-            addTask({
-              user_id: userId,
-              task_name: bookData.title,
-              category: "To read",
-              due_date: new Date().toISOString(),
-              date_created: new Date().toISOString(),
-              priority: false,
-              is_active: true,
-            });
-            let frontendData = { category: 'To read', data: bookData };
-            console.log(`Book match was ${bookMatch}! Added task to 'To read'`);
-            return res.send(frontendData);
-          }
-        })
-      }
-    });
-  };
-  runApi(taskName, user);
-
+  const result = results[index];
+  let task = null;
+  switch (index) {
+  case MOVIE_INDEX:
+    task = getTaskFromMovie(taskName, userId, result);
+    break;
+  case BOOK_INDEX:
+    task = getTaskFromBook(taskName, userId, result);
+    break;
+  case EAT_INDEX:
+    task = getTaskFromEat(taskName, userId, result);
+    break;
+  case PRODUCT_INDEX:
+    task = getTaskFromProduct(taskName, userId, result);
+    break;
+  }
+  if (task) {
+    const newRecord = await addTask(task);
+    console.log(newRecord);
+    res.json(newRecord);
+  }
 });
 
 router.get("/", (req, res) => {
@@ -83,21 +63,19 @@ router.get("/:id", (req, res) => {
   console.log(query);
 
   db.query(query)
-    .then(data => {
+    .then((data) => {
       const tasks = data.rows;
       console.log(tasks);
       const templateVars = {
         user_id: req.session.user_id,
         task: tasks,
       };
-      res.render('task-view', templateVars);
+      res.render("task-view", templateVars);
     })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
     });
-})
+});
 
 router.patch("/", (req, res) => {
   // This is for updating a task
