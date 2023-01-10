@@ -19,6 +19,7 @@ $(document).ready(function () {
     const taskData = $(this).serialize();
 
     $.post("/tasks", taskData).then((task) => {
+      console.log(task)
       if (task.category === "To watch") {
         $("#to-watch-list").prepend(createTaskElement(task.task_name, task.id));
       } else if (task.category === "To read") {

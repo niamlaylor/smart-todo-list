@@ -1,7 +1,7 @@
 const express = require("express");
 const request = require("request");
 const axios = require("axios");
-const { addTask, deleteTask } = require("../db/queries/tasks_queries");
+const { addTask, deleteTask, editTask } = require("../db/queries/tasks_queries");
 const { apiChecker } = require("../helpers/api-checker");
 const db = require("../db/connection");
 const { searchSources } = require("../api/search-api");
@@ -75,6 +75,25 @@ router.get("/:id", (req, res) => {
     .catch((err) => {
       res.status(500).json({ error: err.message });
     });
+});
+
+router.post("/:id", (req, res) => {
+  const query = `SELECT * FROM tasks WHERE id = ${req.params.id}`;
+  console.log(query);
+
+  // db.query(query)
+  //   .then((data) => {
+  //     const tasks = data.rows;
+  //     console.log(tasks);
+  //     const templateVars = {
+  //       user_id: req.session.user_id,
+  //       task: tasks,
+  //     };
+  //     res.render("task-view", templateVars);
+  //   })
+  //   .catch((err) => {
+  //     res.status(500).json({ error: err.message });
+  //   });
 });
 
 router.patch("/", (req, res) => {
