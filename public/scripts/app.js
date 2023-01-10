@@ -27,28 +27,25 @@ $(document).ready(function () {
         // Increase the counter by 1
         let $watchCount = Number($("#watch-count").text());
         $watchCount += 1;
-        console.log($watchCount)
+        console.log($watchCount);
         $("#watch-count").text($watchCount);
-
       } else if (task.category === "To read") {
         $("#to-read-list").prepend(createTaskElement(task.task_name, task.id));
         let $readCount = Number($("#read-count").text());
         $readCount += 1;
-        console.log($readCount)
+        console.log($readCount);
         $("#read-count").text($readCount);
-
       } else if (task.category === "To eat") {
         $("#to-eat-list").prepend(createTaskElement(task.task_name, task.id));
         let $eatCount = Number($("#eat-count").text());
         $eatCount += 1;
-        console.log($eatCount)
+        console.log($eatCount);
         $("#eat-count").text($eatCount);
-
       } else if (task.category === "To buy") {
         $("#to-buy-list").prepend(createTaskElement(task.task_name, task.id));
         let $buyCount = Number($("#buy-count").text());
         $buyCount += 1;
-        console.log($buyCount)
+        console.log($buyCount);
         $("#buy-count").text($buyCount);
       }
     });
@@ -66,12 +63,9 @@ $(document).ready(function () {
         } else {
           if (data.email.length > 3) {
             $("#userEmailDisplay").text(data.email);
-<<<<<<< Updated upstream
-=======
             $("#edit-user").trigger("reset");
           } else {
             $("#edit-user").trigger("reset");
->>>>>>> Stashed changes
           }
         }
       })
