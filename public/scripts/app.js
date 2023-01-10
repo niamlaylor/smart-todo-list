@@ -21,13 +21,35 @@ $(document).ready(function () {
     $.post("/tasks", taskData).then((task) => {
       console.log(task)
       if (task.category === "To watch") {
+        // Add new task to the To watch card
         $("#to-watch-list").prepend(createTaskElement(task.task_name, task.id));
+
+        // Increase the counter by 1
+        let $watchCount = Number($("#watch-count").text());
+        $watchCount += 1;
+        console.log($watchCount)
+        $("#watch-count").text($watchCount);
+
       } else if (task.category === "To read") {
         $("#to-read-list").prepend(createTaskElement(task.task_name, task.id));
+        let $readCount = Number($("#read-count").text());
+        $readCount += 1;
+        console.log($readCount)
+        $("#read-count").text($readCount);
+
       } else if (task.category === "To eat") {
         $("#to-eat-list").prepend(createTaskElement(task.task_name, task.id));
+        let $eatCount = Number($("#eat-count").text());
+        $eatCount += 1;
+        console.log($eatCount)
+        $("#eat-count").text($eatCount);
+
       } else if (task.category === "To buy") {
         $("#to-buy-list").prepend(createTaskElement(task.task_name, task.id));
+        let $buyCount = Number($("#buy-count").text());
+        $buyCount += 1;
+        console.log($buyCount)
+        $("#buy-count").text($buyCount);
       }
     });
   });
