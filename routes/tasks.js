@@ -40,8 +40,9 @@ router.post("/", async (req, res) => {
     break;
   }
   if (task) {
-    addTask(task);
-    res.json(task);
+    const newRecord = await addTask(task);
+    console.log(newRecord);
+    res.json(newRecord);
   }
 });
 
