@@ -32,6 +32,26 @@ $(document).ready(function () {
     });
   });
 
+  $("#edit-user").submit(function (event) {
+    console.log("submit event activated");
+    event.preventDefault();
+
+    const formText = $(this).serialize();
+    $.post("/users/update-user", formText)
+      .then((data) => {
+        if (!data) {
+          console.log("Error, post request successful but no values to edit");
+        } else {
+          if (data.email.length > 3) {
+            $("#userEmailDisplay").text(data.email);
+          }
+        }
+      })
+      .catch((error) => {
+        console.log(`Error: ${error}`);
+      });
+  });
+
   const loadTasks = function () {
     $.get("/api/tasks", function (data, status) {
       for (const task of data.tasks) {

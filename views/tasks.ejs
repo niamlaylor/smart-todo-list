@@ -98,7 +98,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form method="POST" action="/register">
+            <form id="edit-user" action="#">
               <div class="form-group">
                 <label for="editUserEmail">Email</label>
                 <input
@@ -109,6 +109,9 @@
                   aria-describedby="emailHelp"
                   placeholder="Enter email"
                 />
+                <div>
+                  <small id="userEmailDisplay"><%= user.email %></small>
+                </div>
               </div>
               <div class="form-group">
                 <label for="editUserPassword">Password</label>
