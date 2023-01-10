@@ -19,7 +19,7 @@ $(document).ready(function () {
     const taskData = $(this).serialize();
 
     $.post("/tasks", taskData).then((task) => {
-      console.log(task)
+      console.log(task);
       if (task.category === "To watch") {
         // Add new task to the To watch card
         $("#to-watch-list").prepend(createTaskElement(task.task_name, task.id));
@@ -66,6 +66,12 @@ $(document).ready(function () {
         } else {
           if (data.email.length > 3) {
             $("#userEmailDisplay").text(data.email);
+<<<<<<< Updated upstream
+=======
+            $("#edit-user").trigger("reset");
+          } else {
+            $("#edit-user").trigger("reset");
+>>>>>>> Stashed changes
           }
         }
       })
