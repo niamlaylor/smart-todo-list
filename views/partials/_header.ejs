@@ -1,8 +1,15 @@
 <nav class="navbar navbar-expand-lg">
   <div class="col-1"></div>
-  <a class="navbar-brand ml-2 nav-logo-word-1 text-light" href="#"
+  <% if (!user_id) { %>
+  <a class="navbar-brand ml-2 nav-logo-word-1 text-light" href="/"
     >List<span class="nav-logo-word-2">Easy</span></a
   >
+  <% } %>
+  <% if (user_id) { %>
+    <a class="navbar-brand ml-2 nav-logo-word-1 text-light" href="/tasks"
+    >List<span class="nav-logo-word-2">Easy</span></a
+  >
+  <% } %>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
       <% if (!user_id) { %>

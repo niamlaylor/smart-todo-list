@@ -9,7 +9,7 @@ const escape = function (str) {
 
 const createTaskElement = (taskName, task_id) => {
   const safeHTML = `${escape(taskName)}`;
-  const $task = `<li class="list-group-item"><a href="/tasks/${task_id}" class="card-link">${safeHTML}</a></li>`;
+  const $task = `<li class="list-group-item"><a href="/tasks/${task_id}" class="card-link">${safeHTML} <i class="fa-solid fa-pencil float-right"></i></a></li>`;
   return $task;
 };
 
@@ -19,6 +19,7 @@ $(document).ready(function () {
     const taskData = $(this).serialize();
 
     $.post("/tasks", taskData).then((task) => {
+      console.log(task)
       if (task.category === "To watch") {
         $("#to-watch-list").prepend(createTaskElement(task.task_name, task.id));
       } else if (task.category === "To read") {
