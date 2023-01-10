@@ -60,7 +60,6 @@ router.post("/", (req, res) => {
           }
         })
       }
-      let movieInfo = { category: 'To watch', data: response.data };
     });
   };
   runApi(taskName, user);
@@ -105,9 +104,9 @@ router.patch("/", (req, res) => {
 });
 
 // For this route we delete the value of req.params
-router.delete("/:task_id", (req, res) => {
+router.delete("/:id", (req, res) => {
   // Need to test if this works with the db queries
-  deleteTask(req.session.user_id, req.params.task_id);
+  deleteTask(req.session.user_id, req.params.id);
   res.redirect("/tasks");
 });
 
