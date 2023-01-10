@@ -7,28 +7,24 @@ const { addTask } = require("../db/queries/tasks_queries");
  * @param {*} task
  * @param {*} userId
  */
-const movieApi = function(task, userId) {
-  axios
-    .get(`https://www.omdbapi.com/?t=${task}&apikey=a53781da`)
+const getMovie = query => {
+  return axios
+    .get(`https://www.omdbapi.com/?t=${query}&apikey=${process.env.MOVIE_API_KEY}`)
     .then((response) => {
-      if (task === response.data["Title"]) {
-        console.log(`Request successful! To Watch category`);
-        addTask({
-          user_id: userId,
-          task_name: task,
-          category: "To watch",
-          due_date: new Date().toISOString(),
-          date_created: new Date().toISOString(),
-          priority: false,
-          is_active: true,
-        });
-      } else {
-        return Promise.resolve(false);
-      }
-    })
-    .catch((error) => {
-      console.log(error);
+      return response.data;
     });
 };
 
-module.exports = { movieApi };
+const getTaskFromMovie = (name, userId, movie) => {
+  return {
+    user_id: userId,
+    task_name: name,
+    category: "To watch",
+    due_date: new Date().toISOString(),
+    date_created: new Date().toISOString(),
+    priority: false,
+    is_active: true
+  };
+};
+
+module.exports = { getMovie, getTaskFromMovie };

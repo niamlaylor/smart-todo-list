@@ -32,10 +32,11 @@ const addTask = (params) => {
   fields.map((val, index) => {
     values.push(params[val]);
     if (index < fields.length - 1) text += `$${values.length}, `;
-    else text += `$${values.length})`;
+    else text += `$${values.length}) RETURNING *`;
   });
 
-  return db.query(text, values).then((data) => "added");
+  return db.query(text, values)
+    .then(data => data.rows[0]);
 };
 
 const getTask = (taskId) => {
