@@ -2,6 +2,7 @@ const express = require("express");
 const request = require("request");
 const axios = require("axios");
 const { addTask, deleteTask } = require("../db/queries/tasks_queries");
+const { getUserById } = require("../db/queries/users_queries");
 const { apiChecker } = require("../helpers/api-checker");
 const db = require("../db/connection");
 const { searchSources } = require("../api/search-api");
@@ -26,18 +27,18 @@ router.post("/", async (req, res) => {
   const result = results[index];
   let task = null;
   switch (index) {
-  case MOVIE_INDEX:
-    task = getTaskFromMovie(taskName, userId, result);
-    break;
-  case BOOK_INDEX:
-    task = getTaskFromBook(taskName, userId, result);
-    break;
-  case EAT_INDEX:
-    task = getTaskFromEat(taskName, userId, result);
-    break;
-  case PRODUCT_INDEX:
-    task = getTaskFromProduct(taskName, userId, result);
-    break;
+    case MOVIE_INDEX:
+      task = getTaskFromMovie(taskName, userId, result);
+      break;
+    case BOOK_INDEX:
+      task = getTaskFromBook(taskName, userId, result);
+      break;
+    case EAT_INDEX:
+      task = getTaskFromEat(taskName, userId, result);
+      break;
+    case PRODUCT_INDEX:
+      task = getTaskFromProduct(taskName, userId, result);
+      break;
   }
   if (task) {
     const newRecord = await addTask(task);
@@ -48,13 +49,22 @@ router.post("/", async (req, res) => {
 
 router.get("/", (req, res) => {
   let apiTasks;
-  request("http://localhost:8080/api/tasks", function (error, response, body) {
-    apiTasks = JSON.parse(body);
-    const templateVars = {
-      user_id: req.session.user_id,
-      tasks: apiTasks.tasks,
+  getUserById(req.session.user_id).then((user) => {
+    let userEmail = user[0].email;
+    res.locals.user = {
+      email: userEmail,
     };
-    res.render("tasks", templateVars);
+    request(
+      "http://localhost:8080/api/tasks",
+      function (error, response, body) {
+        apiTasks = JSON.parse(body);
+        const templateVars = {
+          user_id: req.session.user_id,
+          tasks: apiTasks.tasks,
+        };
+        res.render("tasks", templateVars);
+      }
+    );
   });
 });
 
