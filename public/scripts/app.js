@@ -38,7 +38,13 @@ $(document).ready(function () {
     const formText = $(this).serialize();
     $.post("/users/update-user", formText)
       .then((data) => {
-        $("#userEmailDisplay").text(data.email);
+        if (!data) {
+          console.log("Error, post request successful but no values to edit");
+        } else {
+          if (data.email.length > 3) {
+            $("#userEmailDisplay").text(data.email);
+          }
+        }
       })
       .catch((error) => {
         console.log(`Error: ${error}`);
