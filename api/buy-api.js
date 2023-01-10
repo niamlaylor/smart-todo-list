@@ -1,24 +1,36 @@
 const axios = require("axios");
 
-// set up the request parameters
-const params = {
-  api_key: "2915C7E1E54D41DFA5000C18957FD70C",
-  type: "product",
-  amazon_domain: "amazon.ca",
-  asin: "B073JYC4XM",
-  currency: "cad",
-  language: "en_US",
-  output: "html",
-};
 
 // make the http GET request to Rainforest API
-axios
-  .get("https://api.rainforestapi.com/request", { params })
-  .then((response) => {
-    // print the HTML response from Rainforest API
-    console.log(response.data);
-  })
-  .catch((error) => {
-    // catch and print the error
-    console.log(error);
-  });
+const getProduct = (query) => {
+  const params = {
+    api_key: process.env.RAINFOREST_API_KEY,
+    type: "search",
+    amazon_domain: "amazon.ca",
+    search_term: query,
+    output: "json"
+  };
+
+  return axios
+    .get("https://api.rainforestapi.com/request", {
+      params
+    })
+    .then((response) => {
+      // print the HTML response from Rainforest API
+      return response.data.search_results[0];
+    });
+};
+
+const getTaskFromProduct = (name, userId, product) => {
+  return {
+    user_id: userId,
+    task_name: name,
+    category: "To buy",
+    due_date: new Date().toISOString(),
+    date_created: new Date().toISOString(),
+    priority: false,
+    is_active: true
+  };
+};
+
+module.exports = { getProduct, getTaskFromProduct };
