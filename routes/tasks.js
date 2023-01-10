@@ -3,6 +3,7 @@ const request = require("request");
 const axios = require("axios");
 const { addTask, deleteTask } = require("../db/queries/tasks_queries");
 const { apiChecker } = require("../helpers/api-checker");
+const db = require('../db/connection');
 const router = express.Router();
 
 router.post("/", (req, res) => {
@@ -66,18 +67,6 @@ router.post("/", (req, res) => {
 
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
 router.get("/", (req, res) => {
   let apiTasks;
   request("http://localhost:8080/api/tasks", function (error, response, body) {
@@ -89,6 +78,27 @@ router.get("/", (req, res) => {
     res.render("tasks", templateVars);
   });
 });
+
+router.get("/:id", (req, res) => {
+  const query = `SELECT * FROM tasks WHERE id = ${req.params.id}`;
+  console.log(query);
+
+  db.query(query)
+    .then(data => {
+      const tasks = data.rows;
+      console.log(tasks);
+      const templateVars = {
+        user_id: req.session.user_id,
+        task: tasks,
+      };
+      res.render('task-view', templateVars);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+})
 
 router.patch("/", (req, res) => {
   // This is for updating a task
