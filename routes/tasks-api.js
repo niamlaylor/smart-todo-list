@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const db = require('../db/connection');
-const taskQueries = require("../db/queries/tasks_queries");
 
 router.get('/', (req, res) => {
   const query = `SELECT * FROM tasks`;
