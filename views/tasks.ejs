@@ -140,7 +140,17 @@
     <div class="container mt-5">
       <div class="card-deck" style="height: 22rem">
         <div class="card">
-          <div class="card-header grey-custom">To Watch</div>
+          <div class="card-header grey-custom">To Watch
+            <span id="watch-count" class="badge badge-primary badge-pill float-right">
+              <% let watchTasks = 0;
+              for (const task of tasks) {
+                if (task.category === 'To watch') {
+                  watchTasks += 1;
+                }
+              } %>
+              <%= watchTasks %>
+            </span>
+          </div>
           <ul id="to-watch-list"class="list-group list-group-flush">
           </ul>
           <div class="card-footer mt-auto grey-custom">
@@ -148,7 +158,17 @@
           </div>
         </div>
         <div class="card">
-          <div class="card-header grey-custom">To Read</div>
+          <div class="card-header grey-custom">To Read
+            <span id="read-count" class="badge badge-primary badge-pill float-right">
+              <% let readTasks = 0;
+              for (const task of tasks) {
+                if (task.category === 'To read') {
+                  readTasks += 1;
+                }
+              } %>
+              <%= readTasks %>
+            </span>
+          </div>
           <ul id="to-read-list" class="list-group list-group-flush">
           </ul>
           <div class="card-footer mt-auto grey-custom">
@@ -156,7 +176,17 @@
           </div>
         </div>
         <div class="card">
-          <div class="card-header grey-custom">To Eat</div>
+          <div class="card-header grey-custom">To Eat
+            <span id="eat-count" class="badge badge-primary badge-pill float-right">
+              <% let eatTasks = 0;
+              for (const task of tasks) {
+                if (task.category === 'To eat') {
+                  eatTasks += 1;
+                }
+              } %>
+              <%= eatTasks %>
+            </span>
+          </div>
           <ul id="to-eat-list" class="list-group list-group-flush">
           </ul>
           <div class="card-footer mt-auto grey-custom">
@@ -164,7 +194,17 @@
           </div>
         </div>
         <div class="card">
-          <div class="card-header grey-custom">To Buy</div>
+          <div class="card-header grey-custom">To Buy
+            <span id="buy-count" class="badge badge-primary badge-pill float-right">
+              <% let buyTasks = 0;
+              for (const task of tasks) {
+                if (task.category === 'To buy') {
+                  buyTasks += 1;
+                }
+              } %>
+              <%= buyTasks %>
+            </span>
+          </div>
           <ul id="to-buy-list" class="list-group list-group-flush">
           </ul>
           <div class="card-footer mt-auto grey-custom">

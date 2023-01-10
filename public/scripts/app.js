@@ -9,7 +9,7 @@ const escape = function (str) {
 
 const createTaskElement = (taskName, task_id) => {
   const safeHTML = `${escape(taskName)}`;
-  const $task = `<li class="list-group-item"><a href="/tasks/${task_id}" class="card-link">${safeHTML}</a></li>`;
+  const $task = `<li class="list-group-item"><a href="/tasks/${task_id}" class="card-link">${safeHTML} <i class="fa-solid fa-pencil float-right"></i></a></li>`;
   return $task;
 };
 
