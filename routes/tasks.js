@@ -78,26 +78,11 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/:id", (req, res) => {
-  const query = `SELECT * FROM tasks WHERE id = ${req.params.id}`;
-  console.log(query);
+  const newCategory = { category: req.body.changedCategory, userId: req.session.user_id, taskId: req.params.id };
 
-  // db.query(query)
-  //   .then((data) => {
-  //     const tasks = data.rows;
-  //     console.log(tasks);
-  //     const templateVars = {
-  //       user_id: req.session.user_id,
-  //       task: tasks,
-  //     };
-  //     res.render("task-view", templateVars);
-  //   })
-  //   .catch((err) => {
-  //     res.status(500).json({ error: err.message });
-  //   });
-});
+  editTask(newCategory);
 
-router.patch("/", (req, res) => {
-  // This is for updating a task
+  res.redirect(`/tasks/${req.params.id}`)
 });
 
 // For this route we delete the value of req.params

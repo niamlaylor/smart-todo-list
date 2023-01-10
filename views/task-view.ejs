@@ -79,8 +79,8 @@
           <div class="modal-body">
             <form method="POST" action="/tasks/<%= user_id %>">
               <div class="form-group">
-                <label for="taskSelect1">Example select</label>
-                <select class="form-control" id="taskSelect1">
+                <label for="taskSelect1">Change this task's category:</label>
+                <select class="form-control" id="taskSelect1" name="changedCategory">
                   <% if (task[0].category === 'To watch') { %>
                   <option><%= task[0].category %></option>
                   <option>To read</option>
