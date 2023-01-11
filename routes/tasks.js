@@ -137,7 +137,8 @@ router.post("/:id", (req, res) => {
 router.post("/delete/:id", (req, res) => {
   const userId = req.session.user_id;
   const taskId = req.params.id;
-  console.log(userId, taskId);
+
+  deleteTask(userId, taskId);
 
   res.redirect(`/tasks`)
 });
