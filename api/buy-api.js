@@ -1,6 +1,5 @@
 const axios = require("axios");
 
-
 // make the http GET request to Rainforest API
 const getProduct = (query) => {
   const params = {
@@ -8,12 +7,14 @@ const getProduct = (query) => {
     type: "search",
     amazon_domain: "amazon.ca",
     search_term: query,
-    output: "json"
+    output: "json",
+    sort_by: "featured",
+    page: "1",
   };
 
   return axios
     .get("https://api.rainforestapi.com/request", {
-      params
+      params,
     })
     .then((response) => {
       // print the HTML response from Rainforest API
@@ -29,7 +30,7 @@ const getTaskFromProduct = (name, userId, product) => {
     due_date: new Date().toISOString(),
     date_created: new Date().toISOString(),
     priority: false,
-    is_active: true
+    is_active: true,
   };
 };
 
