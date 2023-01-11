@@ -2,7 +2,11 @@ const express = require("express");
 const request = require("request");
 const axios = require("axios");
 
-const { addTask, deleteTask, editTask } = require("../db/queries/tasks_queries");
+const {
+  addTask,
+  deleteTask,
+  editTask,
+} = require("../db/queries/tasks_queries");
 const { getUserById } = require("../db/queries/users_queries");
 const { apiChecker } = require("../helpers/api-checker");
 const db = require("../db/connection");
@@ -89,11 +93,15 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/:id", (req, res) => {
-  const newCategory = { category: req.body.changedCategory, userId: req.session.user_id, taskId: req.params.id };
+  const newCategory = {
+    category: req.body.changedCategory,
+    userId: req.session.user_id,
+    taskId: req.params.id,
+  };
 
   editTask(newCategory);
 
-  res.redirect(`/tasks/${req.params.id}`)
+  res.redirect(`/tasks/${req.params.id}`);
 });
 
 // For this route we delete the value of req.params
