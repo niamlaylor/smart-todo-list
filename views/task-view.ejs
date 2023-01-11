@@ -77,7 +77,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form method="POST" action="/tasks/<%= user_id %>">
+            <form method="POST" action="/tasks/<%= task[0].id %>">
               <div class="form-group">
                 <label for="taskSelect1">Change this task's category:</label>
                 <select class="form-control" id="taskSelect1" name="changedCategory">
