@@ -26,12 +26,7 @@
     <script defer src="/scripts/app.js"></script>
 
     <!-- Link fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&family=Satisfy&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&family=Satisfy&display=swap" rel="stylesheet">
 
     <!-- FontAwesome link to use icons -->
     <script
@@ -44,11 +39,11 @@
 
     <!-- Card showing the details of the task -->
     <div class="jumbotron">
-      <h3 class="display-4"><%= task[0].task_name %></h1>
-      <p class="lead"><%= task[0].category %></p>
-      <p>If we have time, let's add data to populate a brief description here.</p>
+      <h3 class="display-4 default-font"><%= task[0].task_name %></h1>
+      <p class="lead default-font"><%= task[0].category %></p>
+      <p class="default-font">If we have time, let's add data to populate a brief description here.</p>
       <hr class="my-4">
-      <p class="lead">
+      <p class="lead default-font">
         <a class="btn btn btn-secondary" data-toggle="modal" data-target="#edit-task-modal" role="button">Change category</a>
         <a class="btn btn-outline-dark" href="#" role="button">Delete</a>
       </p>
@@ -66,7 +61,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="editUserModalLabel">Edit task</h5>
+            <h5 class="modal-title default-font" id="editUserModalLabel">Edit task</h5>
             <button
               type="button"
               class="close"
@@ -79,8 +74,8 @@
           <div class="modal-body">
             <form method="POST" action="/tasks/<%= task[0].id %>">
               <div class="form-group">
-                <label for="taskSelect1">Change this task's category:</label>
-                <select class="form-control" id="taskSelect1" name="changedCategory">
+                <label for="taskSelect1" class="default-font">Change this task's category:</label>
+                <select class="form-control default-font" id="taskSelect1" name="changedCategory">
                   <% if (task[0].category === 'To watch') { %>
                   <option><%= task[0].category %></option>
                   <option>To read</option>
@@ -108,8 +103,8 @@
                 </select>
               </div>
               <div class="form-group float-right">
-                <button type="submit" class="btn btn-secondary btn-sm">Save</button>
-                <button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-secondary btn-sm default-font">Save</button>
+                <button type="button" class="btn btn-outline-dark btn-sm default-font" data-dismiss="modal">Close</button>
               </div>
             </form>
           </div>

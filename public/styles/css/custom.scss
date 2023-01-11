@@ -1,4 +1,6 @@
 @import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
 
 @mixin bebas {
   font-family: "Bebas Neue", cursive;
@@ -13,13 +15,15 @@
   font-size: 2rem;
 }
 
+.default-font {
+  font-family: "Open Sans", sans-serif;
+}
+
 .nav-logo-word-2 {
   @include satisfy;
   font-size: 1.7rem;
+  color: $orange-400;
 }
-
-@import "../../../node_modules/bootstrap/scss/variables";
-@import "../../../node_modules/bootstrap/scss/mixins";
 
 .index-logo-word-1 {
   @include bebas;
@@ -34,6 +38,32 @@
   background-color: $gray-400;
 }
 
+.card-height {
+  height: 30rem;
+  max-height: 30rem;
+}
+
+.custom-card {
+  border: none;
+  background: #777;
+  background-image: var(--bs-gradient);
+}
+
+.orange-bg {
+  background-color: $orange-400;
+  background-image: var(--bs-gradient);
+}
+
+.purple-custom {
+  background-color: $purple-400;
+}
+
+.card-header,
+.card-footer {
+  background: transparent;
+  color: $orange-400;
+}
+
 .nav-link {
   color: white;
 }
@@ -42,15 +72,47 @@
   color: grey;
 }
 
-body {
-  background-color: $purple-300;
-  background-image: var(--bs-gradient);
+@mixin custom-gradient {
+  background: linear-gradient(to right, #333 0%, #444 50%, #555 100%);
 }
 
-nav {
-  background-color: $purple-400;
-  background-image: var(--bs-gradient);
+.grey-gradient {
+  background: linear-gradient(to bottom, #777, #555);
 }
+
+.card-ele {
+  background: transparent;
+}
+
+.card-link:link {
+  color: white;
+}
+
+.card-link:visited {
+  color: white;
+}
+
+.card-link:focus {
+  color: $gray-400;
+}
+
+.card-link:hover {
+  color: $gray-400;
+}
+
+.card-link:active {
+  color: $gray-400;
+}
+
+body,
+nav {
+  @include custom-gradient;
+}
+
+// nav {
+//   background-color: $purple-400;
+//   background-image: var(--bs-gradient);
+// }
 
 body {
   height: 100vh;

@@ -3,9 +3,14 @@
   font-size: 2rem;
 }
 
+.default-font {
+  font-family: "Open Sans", sans-serif;
+}
+
 .nav-logo-word-2 {
   font-family: "Satisfy", cursive;
   font-size: 1.7rem;
+  color: #fd9843;
 }
 
 .index-logo-word-1 {
@@ -21,6 +26,32 @@
   background-color: #ced4da;
 }
 
+.card-height {
+  height: 30rem;
+  max-height: 30rem;
+}
+
+.custom-card {
+  border: none;
+  background: #777;
+  background-image: var(--bs-gradient);
+}
+
+.orange-bg {
+  background-color: #fd9843;
+  background-image: var(--bs-gradient);
+}
+
+.purple-custom {
+  background-color: #8c68cd;
+}
+
+.card-header,
+.card-footer {
+  background: transparent;
+  color: #fd9843;
+}
+
 .nav-link {
   color: white;
 }
@@ -29,14 +60,37 @@
   color: grey;
 }
 
-body {
-  background-color: #a98eda;
-  background-image: var(--bs-gradient);
+.grey-gradient {
+  background: linear-gradient(to bottom, #777, #555);
 }
 
+.card-ele {
+  background: transparent;
+}
+
+.card-link:link {
+  color: white;
+}
+
+.card-link:visited {
+  color: white;
+}
+
+.card-link:focus {
+  color: #ced4da;
+}
+
+.card-link:hover {
+  color: #ced4da;
+}
+
+.card-link:active {
+  color: #ced4da;
+}
+
+body,
 nav {
-  background-color: #8c68cd;
-  background-image: var(--bs-gradient);
+  background: linear-gradient(to right, #333 0%, #444 50%, #555 100%);
 }
 
 body {

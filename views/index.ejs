@@ -29,7 +29,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&family=Satisfy&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&family=Satisfy&display=swap"
       rel="stylesheet"
     />
 
@@ -44,22 +44,22 @@
   <body>
     <div class="d-flex align-items-center justify-content-center h-75">
       <div class="text-center mt-5">
-        <h1 class="display-1 index-logo-word-1 text-muted my-1">
+        <h1 class="display-1 index-logo-word-1 text-light my-1">
           List<small class="index-logo-word-2">Easy</small>
         </h1>
-        <p class="lead text-light mb-1">
+        <p class="lead text-light mb-1 default-font">
           Login or register to start adding tasks
         </p>
         <div class="mt-3">
           <button
-            class="btn btn-primary mr-5"
+            class="btn btn-warning mr-5 default-font"
             data-toggle="modal"
             data-target="#loginModal"
           >
             Login
           </button>
           <button
-            class="btn btn-secondary"
+            class="btn btn-secondary default-font"
             data-toggle="modal"
             data-target="#registerModal"
           >
@@ -81,7 +81,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="loginModalLabel">Login</h5>
+            <h5 class="modal-title default-font" id="loginModalLabel">Login</h5>
             <button
               type="button"
               class="close"
@@ -94,7 +94,9 @@
           <div class="modal-body">
             <form method="POST" action="/login">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
+                <label for="exampleInputEmail1" class="default-font"
+                  >Email</label
+                >
                 <input
                   type="email"
                   class="form-control"
@@ -105,7 +107,9 @@
                 />
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
+                <label for="exampleInputPassword1" class="default-font"
+                  >Password</label
+                >
                 <input
                   type="password"
                   class="form-control"
@@ -117,12 +121,14 @@
               <div class="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-secondary"
+                  class="btn btn-secondary default-font"
                   data-dismiss="modal"
                 >
                   Close
                 </button>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary default-font">
+                  Login
+                </button>
               </div>
             </form>
           </div>
@@ -142,7 +148,9 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="registerModalLabel">Register</h5>
+            <h5 class="modal-title default-font" id="registerModalLabel">
+              Register
+            </h5>
             <button
               type="button"
               class="close"
@@ -155,7 +163,9 @@
           <div class="modal-body">
             <form method="POST" action="/register">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
+                <label for="exampleInputEmail1" class="default-font"
+                  >Email</label
+                >
                 <input
                   type="email"
                   class="form-control"
@@ -166,7 +176,9 @@
                 />
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
+                <label for="exampleInputPassword1" class="default-font"
+                  >Password</label
+                >
                 <input
                   type="password"
                   class="form-control"
@@ -178,12 +190,14 @@
               <div class="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-secondary"
+                  class="btn btn-secondary default-font"
                   data-dismiss="modal"
                 >
                   Close
                 </button>
-                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="submit" class="btn btn-primary default-font">
+                  Register
+                </button>
               </div>
             </form>
           </div>
