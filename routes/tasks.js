@@ -4,42 +4,33 @@ const axios = require("axios");
 
 const { addTask, deleteTask, editTask } = require("../db/queries/tasks_queries");
 const { getUserById } = require("../db/queries/users_queries");
-const { apiChecker } = require("../helpers/api-checker");
 const db = require("../db/connection");
-const { searchSources } = require("../api/search-api");
-const { getTaskFromBook } = require("../api/book-api");
-const { getTaskFromEat } = require("../api/eats-api");
-const { getTaskFromProduct } = require("../api/buy-api");
-const { getTaskFromMovie } = require("../api/movie-api");
+const { getTaskFromBook, getBook } = require("../api/book-api");
+const { getTaskFromEat, getEat } = require("../api/eats-api");
+const { getTaskFromProduct, getProduct } = require("../api/buy-api");
+const { getTaskFromMovie, getMovie } = require("../api/movie-api");
+const { categorizeSearchQuery } = require("../api/classify-api");
+const { TASK_CATEGORIES } = require("../api/constants");
 const router = express.Router();
 
-router.post("/", async (req, res) => {
+router.post("/", async(req, res) => {
   const taskName = req.body.task_name;
   const userId = req.session.user_id;
-  const results = await searchSources(taskName);
-
-  // Pick a result randomly from the 4 api's we queried
-  const index = Math.floor(Math.random() * 4);
-  const MOVIE_INDEX = 0;
-  const BOOK_INDEX = 1;
-  const EAT_INDEX = 2;
-  const PRODUCT_INDEX = 3;
-
-  const result = results[index];
+  const category = await categorizeSearchQuery(taskName);
   let task = null;
-  switch (index) {
-    case MOVIE_INDEX:
-      task = getTaskFromMovie(taskName, userId, result);
-      break;
-    case BOOK_INDEX:
-      task = getTaskFromBook(taskName, userId, result);
-      break;
-    case EAT_INDEX:
-      task = getTaskFromEat(taskName, userId, result);
-      break;
-    case PRODUCT_INDEX:
-      task = getTaskFromProduct(taskName, userId, result);
-      break;
+  switch (category) {
+  case TASK_CATEGORIES.MOVIES:
+    task = getTaskFromMovie(taskName, userId, getMovie(taskName));
+    break;
+  case TASK_CATEGORIES.BOOKS:
+    task = getTaskFromBook(taskName, userId, getBook(taskName));
+    break;
+  case TASK_CATEGORIES.EATS:
+    task = getTaskFromEat(taskName, userId, getEat(taskName));
+    break;
+  case TASK_CATEGORIES.PRODUCTS:
+    task = getTaskFromProduct(taskName, userId, getProduct(taskName));
+    break;
   }
   if (task) {
     const newRecord = await addTask(task);
@@ -93,7 +84,7 @@ router.post("/:id", (req, res) => {
 
   editTask(newCategory);
 
-  res.redirect(`/tasks/${req.params.id}`)
+  res.redirect(`/tasks/${req.params.id}`);
 });
 
 // For this route we delete the value of req.params
