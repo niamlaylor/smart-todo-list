@@ -3,7 +3,7 @@ const axios = require("axios");
 const getEat = (query) => {
   return axios
     .get(
-      `https://api.yelp.com/v3/businesses/search?location=Guelph&term=${query}&radius=2000&categories=&sort_by=best_match&limit=20`,
+      `https://api.yelp.com/v3/businesses/search?location=Toronto&term=${query}&radius=2000&categories=&sort_by=best_match&limit=20`,
       {
         headers: {
           Authorization: `Bearer ${process.env.YELP_API_KEY}`,
