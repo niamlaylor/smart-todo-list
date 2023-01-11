@@ -56,6 +56,25 @@
   color: white;
 }
 
+.loading-spinner {
+  display: none;
+  width: 30px;
+  height: 30px;
+  border: 5px solid #ddd;
+  border-top-color: #333;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  position: relative;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .nav-link:hover {
   color: grey;
 }
