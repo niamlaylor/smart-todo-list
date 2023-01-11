@@ -29,12 +29,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Link fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&family=Satisfy&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&family=Satisfy&display=swap" rel="stylesheet">
 
     <!-- FontAwesome link to use icons -->
     <script
@@ -49,7 +44,7 @@
     <div class="container mt-5">
       <div class="row justify-content-center">
         <div class="col-4">
-          <h2 class="text-center mb-3">Add Task</h2>
+          <h2 class="text-center mb-3 default-font text-light">Add a Task</h2>
           <form id="new-task-form" method="POST" action="/tasks">
             <div class="input-group mb-3">
               <input
@@ -87,7 +82,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+            <h5 class="modal-title default-font" id="editUserModalLabel">Edit User</h5>
             <button
               type="button"
               class="close"
@@ -110,7 +105,7 @@
                   placeholder="Enter email"
                 />
                 <div>
-                  <small class="font-weight-bold">Current email: </small><small id="userEmailDisplay"><%= user.email %></small>
+                  <small class="font-weight-bold default-font">Current email: </small><small id="userEmailDisplay" class="default-font"><%= user.email %></small>
                 </div>
               </div>
               <div class="form-group">
@@ -126,12 +121,12 @@
               <div class="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-secondary"
+                  class="btn btn-secondary default-font"
                   data-dismiss="modal"
                 >
                   Close
                 </button>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary default-font">Submit</button>
               </div>
             </form>
           </div>
@@ -140,10 +135,10 @@
     </div>
 
     <!-- Cards for displaying tasks -->
-    <div class="container mt-5">
-      <div class="card-deck" style="height: 22rem">
-        <div class="card">
-          <div class="card-header grey-custom">To Watch
+    <div class="container mt-5 default-font">
+      <div class="card-deck card-height">
+        <div class="card card-height custom-card">
+          <div class="card-header grey-custom orange-bg font-weight-bold">To Watch
             <span id="watch-count" class="badge badge-primary badge-pill float-right">
               <% let watchTasks = 0;
               for (const task of tasks) {
@@ -154,14 +149,14 @@
               <%= watchTasks %>
             </span>
           </div>
-          <ul id="to-watch-list"class="list-group list-group-flush">
+          <ul id="to-watch-list"class="list-group list-group-flush overflow-auto">
           </ul>
-          <div class="card-footer mt-auto grey-custom">
-            <small class="text">IMDb</small>
+          <div class="card-footer mt-auto grey-custom orange-bg">
+            <small class="text-dark font-weight-bold">IMDb</small>
           </div>
         </div>
-        <div class="card">
-          <div class="card-header grey-custom">To Read
+        <div class="card card-height custom-card">
+          <div class="card-header grey-custom orange-bg font-weight-bold">To Read
             <span id="read-count" class="badge badge-primary badge-pill float-right">
               <% let readTasks = 0;
               for (const task of tasks) {
@@ -172,14 +167,14 @@
               <%= readTasks %>
             </span>
           </div>
-          <ul id="to-read-list" class="list-group list-group-flush">
+          <ul id="to-read-list" class="list-group list-group-flush overflow-auto">
           </ul>
-          <div class="card-footer mt-auto grey-custom">
-            <small class="text">Google Books</small>
+          <div class="card-footer mt-auto grey-custom orange-bg">
+            <small class="text-dark font-weight-bold">Google Books</small>
           </div>
         </div>
-        <div class="card">
-          <div class="card-header grey-custom">To Eat
+        <div class="card card-height custom-card">
+          <div class="card-header grey-custom orange-bg font-weight-bold">To Eat
             <span id="eat-count" class="badge badge-primary badge-pill float-right">
               <% let eatTasks = 0;
               for (const task of tasks) {
@@ -190,14 +185,14 @@
               <%= eatTasks %>
             </span>
           </div>
-          <ul id="to-eat-list" class="list-group list-group-flush">
+          <ul id="to-eat-list" class="list-group list-group-flush overflow-auto">
           </ul>
-          <div class="card-footer mt-auto grey-custom">
-            <small class="text">Yelp</small>
+          <div class="card-footer mt-auto grey-custom orange-bg">
+            <small class="text-dark font-weight-bold">Yelp</small>
           </div>
         </div>
-        <div class="card">
-          <div class="card-header grey-custom">To Buy
+        <div class="card card-height custom-card">
+          <div class="card-header grey-custom orange-bg font-weight-bold">To Buy
             <span id="buy-count" class="badge badge-primary badge-pill float-right">
               <% let buyTasks = 0;
               for (const task of tasks) {
@@ -208,10 +203,10 @@
               <%= buyTasks %>
             </span>
           </div>
-          <ul id="to-buy-list" class="list-group list-group-flush">
+          <ul id="to-buy-list" class="list-group list-group-flush overflow-auto">
           </ul>
-          <div class="card-footer mt-auto grey-custom">
-            <small class="text">Amazon</small>
+          <div class="card-footer mt-auto grey-custom orange-bg">
+            <small class="text-dark font-weight-bold">Amazon</small>
           </div>
         </div>
       </div>

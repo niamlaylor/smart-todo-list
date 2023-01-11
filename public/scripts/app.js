@@ -9,7 +9,7 @@ const escape = function (str) {
 
 const createTaskElement = (taskName, task_id) => {
   const safeHTML = `${escape(taskName)}`;
-  const $task = `<li class="list-group-item"><a href="/tasks/${task_id}" class="card-link">${safeHTML} <i class="fa-solid fa-pencil float-right"></i></a></li>`;
+  const $task = `<li class="list-group-item card-ele"><a href="/tasks/${task_id}" class="card-link">${safeHTML} <i class="fa-solid fa-pencil float-right"></i></a></li>`;
   return $task;
 };
 
@@ -19,6 +19,7 @@ $(document).ready(function () {
     const taskData = $(this).serialize();
 
     $.post("/tasks", taskData).then((task) => {
+      $("#new-task-form").trigger("reset");
       console.log(task);
       if (task.category === "To watch") {
         // Add new task to the To watch card
