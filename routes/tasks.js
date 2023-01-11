@@ -134,10 +134,12 @@ router.post("/:id", (req, res) => {
 });
 
 // For this route we delete the value of req.params
-router.delete("/:id", (req, res) => {
-  // Need to test if this works with the db queries
-  deleteTask(req.session.user_id, req.params.id);
-  res.redirect("/tasks");
+router.post("/delete/:id", (req, res) => {
+  const userId = req.session.user_id;
+  const taskId = req.params.id;
+  console.log(userId, taskId);
+
+  res.redirect(`/tasks`)
 });
 
 
