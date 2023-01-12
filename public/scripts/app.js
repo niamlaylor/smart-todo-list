@@ -1,7 +1,7 @@
 // Client facing scripts here
 
 // This function prevents malicious entries in the task textarea
-const escape = function (str) {
+const escape = function(str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
@@ -13,8 +13,8 @@ const createTaskElement = (taskName, task_id) => {
   return $task;
 };
 
-$(document).ready(function () {
-  $("#new-task-form").submit(function (event) {
+$(document).ready(function() {
+  $("#new-task-form").submit(function(event) {
     event.preventDefault();
     const taskData = $(this).serialize();
 
@@ -77,8 +77,8 @@ $(document).ready(function () {
       });
   });
 
-  const loadTasks = function () {
-    $.get("/api/tasks", function (data, status) {
+  const loadTasks = function() {
+    $.get("/api/tasks", function(data, status) {
       for (const task of data.tasks) {
         if (task.category === "To watch") {
           $("#to-watch-list").prepend(

@@ -48,7 +48,7 @@ router.get("/", (req, res) => {
     };
     request(
       "http://localhost:8080/api/tasks",
-      function (error, response, body) {
+      function(error, response, body) {
         apiTasks = JSON.parse(body);
         const templateVars = {
           user_id: req.session.user_id,
@@ -94,7 +94,7 @@ router.post("/delete/:id", (req, res) => {
 
   deleteTask(userId, taskId);
 
-  res.redirect(`/tasks`)
+  res.redirect(`/tasks`);
 });
 
 

@@ -14,7 +14,7 @@ const mapGoogleCategoryToCategory = (googleCategory) => {
   return "To buy";
 };
 
-const categorizeSearchQuery = async (query) => {
+const categorizeSearchQuery = async(query) => {
   const results = await axios.post(
     `https://language.googleapis.com/v1/documents:classifyText?alt=json&key=${process.env.GOOGLE_API_KEY}`,
     {

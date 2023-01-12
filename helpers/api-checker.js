@@ -10,28 +10,28 @@ const compareApi = (task, movie, book, restaurant, product) => {
     movieWords = [''];
   } else {
     movieWords = movie.toLowerCase().split(' ');
-  };
+  }
 
   let bookWords;
   if (!book) {
     bookWords = [''];
   } else {
     bookWords = book.toLowerCase().split(' ');
-  };
+  }
 
   let restaurantWords;
   if (!restaurant) {
     restaurantWords = [''];
   } else {
     restaurantWords = restaurant.toLowerCase().split(' ');
-  };
+  }
 
   let productWords;
   if (!product) {
     productWords = [''];
   } else {
     productWords = product.toLowerCase().split(' ');
-  };
+  }
 
   const movieMatchWords = movieWords.filter((word) => taskWords.includes(word));
   bestMatch["movieMatch"] = movieMatchWords.length / taskWords.length;
@@ -50,7 +50,7 @@ const compareApi = (task, movie, book, restaurant, product) => {
     if (bestMatch[ratio] > bestMatch[bestResponse]) {
       bestResponse = ratio;
     }
-  };
+  }
   if (bestResponse === 'movieMatch') {
     return 'To watch';
   } else if (bestResponse === 'bookMatch') {
@@ -59,7 +59,7 @@ const compareApi = (task, movie, book, restaurant, product) => {
     return 'To watch';
   } else if (bestResponse === 'productMatch') {
     return 'To buy';
-  };
+  }
 };
 
 module.exports = { compareApi };
