@@ -18,8 +18,10 @@ $(document).ready(function () {
     event.preventDefault();
     const taskData = $(this).serialize();
 
+    $(".loading-spinner").fadeIn("fast");
     $.post("/tasks", taskData).then((task) => {
       $("#new-task-form").trigger("reset");
+      $(".loading-spinner").fadeOut("fast");
       console.log(task);
       if (task.category === "To watch") {
         // Add new task to the To watch card
