@@ -1,4 +1,5 @@
 const axios = require("axios");
+const { TASK_CATEGORIES } = require("./constants");
 
 // make the http GET request to Rainforest API
 const getProduct = (query) => {
@@ -10,6 +11,7 @@ const getProduct = (query) => {
     output: "json",
     sort_by: "featured",
     page: "1",
+    results_per_page: "1"
   };
 
   return axios
@@ -19,6 +21,9 @@ const getProduct = (query) => {
     .then((response) => {
       // print the HTML response from Rainforest API
       return response.data.search_results[0];
+    })
+    .catch(err => {
+      return null;
     });
 };
 
@@ -26,7 +31,7 @@ const getTaskFromProduct = (name, userId, product) => {
   return {
     user_id: userId,
     task_name: name,
-    category: "To buy",
+    category: TASK_CATEGORIES.PRODUCTS,
     due_date: new Date().toISOString(),
     date_created: new Date().toISOString(),
     priority: false,

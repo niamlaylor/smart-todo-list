@@ -1,7 +1,7 @@
 const axios = require("axios");
 const request = require("request");
 const { addTask } = require("../db/queries/tasks_queries");
-
+const { TASK_CATEGORIES } = require("./constants");
 /**
  *
  * @param {*} task
@@ -19,7 +19,7 @@ const getTaskFromMovie = (name, userId, movie) => {
   return {
     user_id: userId,
     task_name: name,
-    category: "To watch",
+    category: TASK_CATEGORIES.MOVIES,
     due_date: new Date().toISOString(),
     date_created: new Date().toISOString(),
     priority: false,

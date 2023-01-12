@@ -20,16 +20,16 @@ router.post("/", async(req, res) => {
   let task = null;
   switch (category) {
   case TASK_CATEGORIES.MOVIES:
-    task = getTaskFromMovie(taskName, userId, getMovie(taskName));
+    task = getTaskFromMovie(taskName, userId, await getMovie(taskName));
     break;
   case TASK_CATEGORIES.BOOKS:
-    task = getTaskFromBook(taskName, userId, getBook(taskName));
+    task = getTaskFromBook(taskName, userId, await getBook(taskName));
     break;
   case TASK_CATEGORIES.EATS:
-    task = getTaskFromEat(taskName, userId, getEat(taskName));
+    task = getTaskFromEat(taskName, userId, await getEat(taskName));
     break;
   case TASK_CATEGORIES.PRODUCTS:
-    task = getTaskFromProduct(taskName, userId, getProduct(taskName));
+    task = getTaskFromProduct(taskName, userId, await getProduct(taskName));
     break;
   }
   if (task) {
