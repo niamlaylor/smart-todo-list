@@ -4,85 +4,39 @@ const axios = require("axios");
 
 const { addTask, deleteTask, editTask } = require("../db/queries/tasks_queries");
 const { getUserById } = require("../db/queries/users_queries");
-const { compareApi } = require("../helpers/api-checker");
 const db = require("../db/connection");
-const { searchSources } = require("../api/search-api");
-const { getTaskFromBook } = require("../api/book-api");
-const { getTaskFromEat } = require("../api/eats-api");
-const { getTaskFromProduct } = require("../api/buy-api");
-const { getTaskFromMovie } = require("../api/movie-api");
+const { getTaskFromBook, getBook } = require("../api/book-api");
+const { getTaskFromEat, getEat } = require("../api/eats-api");
+const { getTaskFromProduct, getProduct } = require("../api/buy-api");
+const { getTaskFromMovie, getMovie } = require("../api/movie-api");
+const { categorizeSearchQuery } = require("../api/classify-api");
+const { TASK_CATEGORIES } = require("../api/constants");
 const router = express.Router();
 
-router.post("/", async (req, res) => {
+router.post("/", async(req, res) => {
   const taskName = req.body.task_name;
   const userId = req.session.user_id;
-  const results = await searchSources(taskName);
-
-  let movieTitle;
-  let bookTitle;
-  let eatTitle;
-  let productTitle;
-
-  let movieTask;
-  if (results.values[0].value) {
-    movieTitle = results.values[0].value.Title;
-    movieTask = getTaskFromMovie(movieTitle, userId);
-  } else {
-    movieTask = getTaskFromMovie('asdf123', userId);
-  };
-
-  let bookTask;
-  if (results.values[1].value) {
-    bookTitle = results.values[1].value.volumeInfo.title;
-    bookTask = getTaskFromBook(bookTitle, userId);
-  } else {
-    bookTask = getTaskFromBook('asdf123', userId);
-  };
-
-  let eatTask;
-  if (results.values[2].value) {
-    eatTitle = results.values[2].value.name;
-    eatTask = getTaskFromEat(eatTitle, userId);
-  } else {
-    eatTask = getTaskFromEat('asdf123', userId);
-  };
-
-  let productTask;
-  if (results.values[3].value) {
-    productTitle = results.values[3].value.title;
-    productTask = getTaskFromProduct(productTitle, userId);
-  } else {
-    productTask = getTaskFromProduct('asdf123', userId)
-  };
-
-  const bestMatch = compareApi(taskName, movieTask.task_name, bookTask.task_name, eatTask.task_name, productTask.task_name);
-
-  if (bestMatch) {
-    if (bestMatch === 'To watch') {
-      movieTask = getTaskFromMovie(taskName, userId);
-      const newRecord = await addTask(movieTask);
-      console.log(newRecord);
-      res.json(newRecord);
-
-    } else if (bestMatch === 'To read') {
-      bookTask = getTaskFromBook(taskName, userId);
-      const newRecord = await addTask(bookTask);
-      console.log(newRecord);
-      res.json(newRecord);
-
-    } else if (bestMatch === 'To eat') {
-      eatTask = getTaskFromEat(taskName, userId);
-      const newRecord = await addTask(eatTask);
-      console.log(newRecord);
-      res.json(newRecord);
-
-    } else if (bestMatch === 'To buy') {
-      productTask = getTaskFromProduct(taskName, userId);
-      const newRecord = await addTask(productTask);
-      console.log(newRecord);
-      res.json(newRecord);
-    }
-  };
+  const category = await categorizeSearchQuery(taskName);
+  let task = null;
+  switch (category) {
+  case TASK_CATEGORIES.MOVIES:
+    task = getTaskFromMovie(taskName, userId, await getMovie(taskName));
+    break;
+  case TASK_CATEGORIES.BOOKS:
+    task = getTaskFromBook(taskName, userId, await getBook(taskName));
+    break;
+  case TASK_CATEGORIES.EATS:
+    task = getTaskFromEat(taskName, userId, await getEat(taskName));
+    break;
+  case TASK_CATEGORIES.PRODUCTS:
+    task = getTaskFromProduct(taskName, userId, await getProduct(taskName));
+    break;
+  }
+  if (task) {
+    const newRecord = await addTask(task);
+    console.log(newRecord);
+    res.json(newRecord);
+  }
 });
 
 router.get("/", (req, res) => {
@@ -130,7 +84,7 @@ router.post("/:id", (req, res) => {
 
   editTask(newCategory);
 
-  res.redirect(`/tasks/${req.params.id}`)
+  res.redirect(`/tasks/${req.params.id}`);
 });
 
 // For this route we delete the value of req.params

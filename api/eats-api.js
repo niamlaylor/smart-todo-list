@@ -1,4 +1,5 @@
 const axios = require("axios");
+const { TASK_CATEGORIES } = require("./constants");
 
 const getEat = (query) => {
   return axios
@@ -19,7 +20,7 @@ const getTaskFromEat = (name, userId, eat) => {
   return {
     user_id: userId,
     task_name: name,
-    category: "To eat",
+    category: TASK_CATEGORIES.EATS,
     due_date: new Date().toISOString(),
     date_created: new Date().toISOString(),
     priority: false,

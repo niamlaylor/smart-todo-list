@@ -33,7 +33,7 @@
 
 .custom-card {
   border: none;
-  background: #777;
+  background: #888;
   background-image: var(--bs-gradient);
 }
 
@@ -48,7 +48,7 @@
 
 .card-header,
 .card-footer {
-  background: transparent;
+  background: #777;
   color: #fd9843;
 }
 
@@ -114,4 +114,10 @@ nav {
 
 body {
   height: 100vh;
+}
+
+@media (max-width: 991px) {
+  .card-deck .card {
+    margin-bottom: 15px;
+  }
 }

@@ -43,7 +43,7 @@
     <!-- Form for adding a new task -->
     <div class="container mt-5">
       <div class="row justify-content-center">
-        <div class="col-4">
+        <div class="col-12 col-lg-6">
           <h2 class="text-center mb-3 default-font text-light">Add a Task</h2>
           <form id="new-task-form" method="POST" action="/tasks">
             <div class="input-group mb-3">
@@ -137,9 +137,9 @@
 
     <!-- Cards for displaying tasks -->
     <div class="container mt-5 default-font">
-      <div class="card-deck card-height">
+      <div class="d-block d-lg-flex card-deck card-height">
         <div class="card card-height custom-card">
-          <div class="card-header grey-custom orange-bg font-weight-bold">To Watch
+          <div class="card-header grey-custom orange-bg font-weight-bold d-flex align-items-center justify-content-between">To Watch
             <span id="watch-count" class="badge badge badge-light badge-pill float-right">
               <% let watchTasks = 0;
               for (const task of tasks) {
@@ -157,7 +157,7 @@
           </div>
         </div>
         <div class="card card-height custom-card">
-          <div class="card-header grey-custom orange-bg font-weight-bold">To Read
+          <div class="card-header grey-custom orange-bg font-weight-bold d-flex align-items-center justify-content-between">To Read
             <span id="read-count" class="badge badge badge-light badge-pill float-right">
               <% let readTasks = 0;
               for (const task of tasks) {
@@ -175,7 +175,7 @@
           </div>
         </div>
         <div class="card card-height custom-card">
-          <div class="card-header grey-custom orange-bg font-weight-bold">To Eat
+          <div class="card-header grey-custom orange-bg font-weight-bold d-flex align-items-center justify-content-between">To Eat
             <span id="eat-count" class="badge badge badge-light badge-pill float-right">
               <% let eatTasks = 0;
               for (const task of tasks) {
@@ -193,7 +193,7 @@
           </div>
         </div>
         <div class="card card-height custom-card">
-          <div class="card-header grey-custom orange-bg font-weight-bold">To Buy
+          <div class="card-header grey-custom orange-bg font-weight-bold d-flex align-items-center justify-content-between">To Buy
             <span id="buy-count" class="badge badge badge-light badge-pill float-right">
               <% let buyTasks = 0;
               for (const task of tasks) {

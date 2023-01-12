@@ -1,5 +1,6 @@
 const axios = require("axios");
 const { addTask } = require("../db/queries/tasks_queries");
+const { TASK_CATEGORIES } = require("./constants");
 
 const API_KEY = process.env.BOOK_API_KEY;
 
@@ -17,7 +18,7 @@ const getTaskFromBook = (name, userId, book) => {
   return {
     user_id: userId,
     task_name: name,
-    category: "To read",
+    category: TASK_CATEGORIES.BOOKS,
     due_date: new Date().toISOString(),
     date_created: new Date().toISOString(),
     priority: false,
