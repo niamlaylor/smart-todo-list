@@ -38,15 +38,16 @@
   <!-- Main HTML -->
 
     <!-- Card showing the details of the task -->
-    <div class="jumbotron">
-      <h3 class="display-4 default-font"><%= task[0].task_name %></h1>
-      <p class="lead default-font"><%= task[0].category %></p>
-      <p class="default-font">If we have time, let's add data to populate a brief description here.</p>
-      <hr class="my-4">
-      <p class="lead default-font">
-        <a class="btn btn btn-secondary" data-toggle="modal" data-target="#edit-task-modal" role="button">Change category</a>
-        <a class="btn btn-outline-dark" data-toggle="modal" data-target="#confirm-delete-modal" role="button">Delete</a>
-      </p>
+    <div id="task-details-card" class="card">
+      <div class="card-body">
+        <h2 class="display-4 default-font"><%= task[0].task_name %></h2>
+        <p class="lead default-font"><%= task[0].category %></p>
+        <hr class="my-4">
+        <p class="lead default-font">
+          <a class="btn btn-light" data-toggle="modal" data-target="#edit-task-modal" role="button">Change category</a>
+          <a class="btn btn-outline-light" data-toggle="modal" data-target="#confirm-delete-modal" role="button">Delete</a>
+        </p>
+      </div>
     </div>
 
     <!-- Edit task modal -->

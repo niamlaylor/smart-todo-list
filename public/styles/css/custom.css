@@ -37,10 +37,6 @@
   background-image: var(--bs-gradient);
 }
 
-.new-task {
-  color: #ffa341;
-}
-
 #watch-card, #read-card, #eat-card, #product-card {
   transition: box-shadow 0.3s;
 }
@@ -49,6 +45,30 @@
   box-shadow: 5px 5px 5px 1px #222222;
 }
 
+#task-details-card {
+  background-color: #777;
+  text-align: center;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+}
+
+#task-details-card > div > h2 {
+  font-size: 270%;
+  color: #f8f9fa;
+}
+
+#task-details-card > div > p {
+  color: #fd9843;
+}
+
+@media (max-width: 991px) {
+  #task-details-card > div > h2 {
+    font-size: 150%;
+    word-break: normal;
+  }
+}
 .orange-bg {
   background-color: #fd9843;
   background-image: var(--bs-gradient);
