@@ -49,6 +49,10 @@
   background-image: var(--bs-gradient);
 }
 
+.new-task {
+  color: #ffa341;
+}
+
 #watch-card, #read-card, #eat-card, #product-card {
   transition: box-shadow .3s;
 }
