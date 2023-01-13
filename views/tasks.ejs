@@ -138,7 +138,7 @@
     <!-- Cards for displaying tasks -->
     <div class="container mt-5 default-font">
       <div class="d-block d-lg-flex card-deck card-height">
-        <div class="card card-height custom-card">
+        <div id="watch-card" class="card card-height custom-card">
           <div class="card-header grey-custom orange-bg font-weight-bold d-flex align-items-center justify-content-between">To Watch
             <span id="watch-count" class="badge badge badge-light badge-pill float-right">
               <% let watchTasks = 0;
@@ -156,7 +156,7 @@
             <small class="text-dark font-weight-bold">IMDb</small>
           </div>
         </div>
-        <div class="card card-height custom-card">
+        <div id="read-card" class="card card-height custom-card">
           <div class="card-header grey-custom orange-bg font-weight-bold d-flex align-items-center justify-content-between">To Read
             <span id="read-count" class="badge badge badge-light badge-pill float-right">
               <% let readTasks = 0;
@@ -174,7 +174,7 @@
             <small class="text-dark font-weight-bold">Google Books</small>
           </div>
         </div>
-        <div class="card card-height custom-card">
+        <div id="eat-card" class="card card-height custom-card">
           <div class="card-header grey-custom orange-bg font-weight-bold d-flex align-items-center justify-content-between">To Eat
             <span id="eat-count" class="badge badge badge-light badge-pill float-right">
               <% let eatTasks = 0;
@@ -192,7 +192,7 @@
             <small class="text-dark font-weight-bold">Yelp</small>
           </div>
         </div>
-        <div class="card card-height custom-card">
+        <div id="product-card" class="card card-height custom-card">
           <div class="card-header grey-custom orange-bg font-weight-bold d-flex align-items-center justify-content-between">To Buy
             <span id="buy-count" class="badge badge badge-light badge-pill float-right">
               <% let buyTasks = 0;

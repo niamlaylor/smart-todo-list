@@ -37,6 +37,14 @@
   background-image: var(--bs-gradient);
 }
 
+#watch-card, #read-card, #eat-card, #product-card {
+  transition: box-shadow 0.3s;
+}
+
+#watch-card:hover, #read-card:hover, #eat-card:hover, #product-card:hover {
+  box-shadow: 5px 5px 5px 1px #222222;
+}
+
 .orange-bg {
   background-color: #fd9843;
   background-image: var(--bs-gradient);
