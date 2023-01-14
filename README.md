@@ -39,10 +39,10 @@ http://localhost:8080/
 
 ## Final Product
 
-!["Screenshot of Login Page"](...)
-!["Screenshot of Add Task Page"](...)
-!["Screenshot of Edit/Delete Task"](...)
-!["Screenshot of Mobile Version"](...)
+![Screenshot of Login Page](screenshots/login-page.png)
+!["Screenshot of Add Task Page"](screenshots/add-task-page.png)
+!["Screenshot of Edit/Delete Task"](screenshots/change-category.gif)
+![Screenshot of Mobile Version](./screenshots/Mobile-View.png)
 
 ## STRETCH
 
