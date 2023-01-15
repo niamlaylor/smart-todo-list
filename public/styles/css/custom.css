@@ -26,6 +26,10 @@
   background-color: #ced4da;
 }
 
+.footer {
+  margin-bottom: none
+}
+
 .card-height {
   height: 30rem;
   max-height: 30rem;
