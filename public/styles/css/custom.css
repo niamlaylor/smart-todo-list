@@ -27,7 +27,7 @@
 }
 
 .footer {
-  margin-bottom: none
+  margin-bottom: none;
 }
 
 .card-height {
@@ -99,8 +99,18 @@
   border: 5px solid #ddd;
   border-top-color: #333;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
   position: relative;
+}
+
+@-webkit-keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
@@ -156,4 +166,4 @@ body {
   .card-deck .card {
     margin-bottom: 15px;
   }
-}
+}/*# sourceMappingURL=custom.css.map */
